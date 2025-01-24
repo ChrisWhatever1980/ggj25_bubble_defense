@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://p4bn5mw1xcb"]
+
+[ext_resource type="Material" uid="uid://dcmhfrwokafpw" path="res://scenes/soap_bubble_material.tres" id="1_pvw3w"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_duikt"]
+
+[node name="SoapBubble" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_pvw3w")
+mesh = SubResource("SphereMesh_duikt")

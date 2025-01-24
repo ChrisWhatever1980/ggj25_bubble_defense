@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://2yu6c20k7w34"]
+
+[ext_resource type="PackedScene" uid="uid://cubdm2t7hjia2" path="res://models/water.glb" id="1_vh64k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uinte"]
+size = Vector3(3.89148, 0.230591, 1.83069)
+
+[node name="Water" type="Node3D"]
+
+[node name="water_model" parent="." instance=ExtResource("1_vh64k")]
+
+[node name="Area3D" type="Area3D" parent="water_model" groups=["Water"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water_model/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00396729, 0.874964, 0.0022583)
+shape = SubResource("BoxShape3D_uinte")

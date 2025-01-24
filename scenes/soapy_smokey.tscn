@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4lvtn5i4ic31"]
+
+[ext_resource type="Material" uid="uid://dcmhfrwokafpw" path="res://scenes/soap_bubble_material.tres" id="1_f5qka"]
+
+[sub_resource type="Curve" id="Curve_6h3lj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 0.133905), 0.0, 0.0, 0, 0, Vector2(1, 0.133905), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vy207"]
+curve = SubResource("Curve_6h3lj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fo66x"]
+direction = Vector3(0, 0, 0)
+spread = 15.0
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_vy207")
+
+[sub_resource type="SphereMesh" id="SphereMesh_udsfk"]
+material = ExtResource("1_f5qka")
+radius = 0.1
+height = 0.2
+
+[node name="SoapSmoke" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+amount = 10
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_fo66x")
+draw_pass_1 = SubResource("SphereMesh_udsfk")

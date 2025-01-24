@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dcmhfrwokafpw"]
+
+[ext_resource type="Shader" path="res://soap_bubble.gdshader" id="1_7dmnd"]
+[ext_resource type="Texture2D" uid="uid://b82d1qhs0rjdj" path="res://textures/soap_bubble_color.png" id="2_qtu4i"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tq27s"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghc5f"]
+noise = SubResource("FastNoiseLite_tq27s")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7dmnd")
+shader_parameter/smoothness = 0.03
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ghc5f")
+shader_parameter/color_texture = ExtResource("2_qtu4i")

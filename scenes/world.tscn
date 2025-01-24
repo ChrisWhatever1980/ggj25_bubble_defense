@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3r3fe7mvw786"]
+
+[ext_resource type="PackedScene" uid="uid://dedqvre2ne1bi" path="res://models/world.glb" id="1_13brs"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_hy3ga"]
+[ext_resource type="PackedScene" uid="uid://hph2m1xcye3" path="res://scenes/level.tscn" id="2_hpliu"]
+[ext_resource type="PackedScene" uid="uid://2yu6c20k7w34" path="res://scenes/water.tscn" id="4_4tp3j"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_hy3ga")
+
+[node name="bathroom" parent="." instance=ExtResource("1_13brs")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-3.8391e-08, -0.47814, 0.878284, -2.09002e-08, 0.878284, 0.47814, -1, 0, -4.37114e-08, 1.554, 1.86887, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.528127, -0.480569, 0.700096, 0, 0.824452, 0.565932, -0.849165, 0.298884, -0.435416, 0, 5.75146, -7.05597)
+shadow_enabled = true
+
+[node name="Level" parent="." instance=ExtResource("2_hpliu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93044, 0)
+
+[node name="Water" parent="." instance=ExtResource("4_4tp3j")]
