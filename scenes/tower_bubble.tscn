@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://p4bn5mw1xcb" path="res://scenes/soap_bubble.tscn" id="1_a0b6u"]
 [ext_resource type="Script" path="res://scenes/tower_bubble.gd" id="1_r4jto"]
-[ext_resource type="PackedScene" uid="uid://dtigaui88h6l6" path="res://scenes/tower.tscn" id="3_ub6lj"]
+[ext_resource type="PackedScene" uid="uid://bw5vqpdep6r4k" path="res://models/tower.glb" id="3_isotc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8gqga"]
 radius = 0.735
 
-[node name="TowerBubble" type="Node3D"]
+[node name="TowerBubble" type="Node3D" groups=["TowerBubbles"]]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_r4jto")
 
@@ -18,7 +18,7 @@ script = ExtResource("1_r4jto")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_8gqga")
 
-[node name="Tower" parent="." instance=ExtResource("3_ub6lj")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.325643, 0)
+[node name="TowerRotate" type="Node3D" parent="."]
 
-[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[node name="tower" parent="TowerRotate" instance=ExtResource("3_isotc")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.336202, 0)

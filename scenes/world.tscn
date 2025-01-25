@@ -1,19 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3r3fe7mvw786"]
+[gd_scene load_steps=11 format=3 uid="uid://c3r3fe7mvw786"]
 
 [ext_resource type="PackedScene" uid="uid://dedqvre2ne1bi" path="res://models/world.glb" id="1_13brs"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_hy3ga"]
-[ext_resource type="PackedScene" uid="uid://hph2m1xcye3" path="res://scenes/level.tscn" id="2_hpliu"]
+[ext_resource type="PackedScene" uid="uid://hph2m1xcye3" path="res://scenes/test_level.tscn" id="2_hpliu"]
 [ext_resource type="PackedScene" uid="uid://2yu6c20k7w34" path="res://scenes/water.tscn" id="4_4tp3j"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="6_iyjup"]
 [ext_resource type="PackedScene" uid="uid://m1ksbs6qt3xo" path="res://models/tree.glb" id="6_y3xfc"]
 [ext_resource type="Texture2D" uid="uid://bnb3tm5edtvdg" path="res://textures/FullMoon.png" id="7_12kvx"]
+[ext_resource type="Texture2D" uid="uid://f5gufb872ekn" path="res://textures/full_moon_emission.png" id="8_3rnlu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcqek"]
 transparency = 1
 albedo_texture = ExtResource("7_12kvx")
 emission_enabled = true
 emission = Color(0.975264, 0.731004, 0.592991, 1)
-emission_energy_multiplier = 2.0
+emission_texture = ExtResource("8_3rnlu")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_xoyha"]
@@ -29,6 +30,7 @@ script = ExtResource("1_hy3ga")
 transform = Transform3D(-0.43823, 0.508694, -0.74107, -4.61991e-08, 0.824453, 0.565931, 0.898863, 0.248008, -0.3613, -20.5722, 5.75146, -7.26335)
 light_color = Color(0.976471, 0.729412, 0.592157, 1)
 shadow_enabled = true
+shadow_bias = 0.3
 
 [node name="Level" parent="." instance=ExtResource("2_hpliu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93044, 0)
@@ -43,7 +45,23 @@ script = ExtResource("6_iyjup")
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 0.877983, 0.478692, 0, -0.478692, 0.877983, 0, 0, 0)
+fov = 58.9
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Moon" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.497, 10.8277, -7.75001)
 mesh = SubResource("QuadMesh_xoyha")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -4.0
+offset_right = -5.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(3, 3)
+layout_mode = 2

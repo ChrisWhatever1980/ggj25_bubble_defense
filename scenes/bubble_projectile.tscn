@@ -6,7 +6,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ipvbj"]
 radius = 0.0440888
 
-[node name="bubble_projectile" type="Node3D" groups=["Projectile"]]
+[node name="bubble_projectile" type="Node3D" groups=["Projectiles"]]
 script = ExtResource("1_0s7hg")
 
 [node name="SoapBubble" parent="." instance=ExtResource("1_840pr")]

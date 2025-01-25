@@ -6,7 +6,7 @@ extends Node3D
 @onready var pause_timer: Timer = $PauseTimer
 
 
-var touching_water = false
+var touching_water = true
 var firing = false
 var target = null
 var reload_duration = 0.2
@@ -22,6 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not touching_water:
 		position.y += -1.0 * 0.2 * delta
+		
 
 	if touching_water:
 		if not target:

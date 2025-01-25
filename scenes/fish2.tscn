@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1w56jmifsdyu"]
+
+[ext_resource type="PackedScene" uid="uid://p4bn5mw1xcb" path="res://scenes/soap_bubble.tscn" id="1_58pne"]
+[ext_resource type="Script" path="res://scenes/fish.gd" id="1_q7awt"]
+[ext_resource type="PackedScene" uid="uid://b8cfdrmeslw3" path="res://models/fish2.glb" id="2_02t87"]
+
+[node name="Fish" type="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("1_q7awt")
+
+[node name="SoapBubble" parent="." instance=ExtResource("1_58pne")]
+
+[node name="fish" parent="." instance=ExtResource("2_02t87")]
+transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-08, 0, 0, 0)
