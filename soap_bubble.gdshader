@@ -4,6 +4,8 @@ uniform sampler2D noise_texture;
 uniform sampler2D color_texture;
 
 uniform float smoothness : hint_range(0.0, 1.0, 0.01);
+uniform float dissolve : hint_range(0.0, 2.0, 0.01);
+
 varying vec3 world_position;
 
 void vertex() {
@@ -24,12 +26,12 @@ float fresnel(vec3 normal, mat4 camera_matrix)
 
 void fragment() {
 	float fresnel = fresnel(NORMAL, VIEW_MATRIX);
+	float dissolve_noise = texture(noise_texture, world_position.xz + vec2(TIME * 0.05)).r;
+
+	if (fresnel < dissolve_noise * dissolve)
+		discard;
+
 	ALBEDO = texture(color_texture, world_position.xz + vec2(TIME * 0.05)).rgb;
 	ROUGHNESS = 0.0f;
 	ALPHA = fresnel;
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}

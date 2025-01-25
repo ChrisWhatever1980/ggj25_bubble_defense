@@ -14,6 +14,10 @@ config/name="Bubble Defense"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameEvents="*res://globals/game_events.gd"
+
 [input]
 
 spawn_tower_bubble={

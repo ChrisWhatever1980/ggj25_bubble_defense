@@ -1,6 +1,9 @@
 extends Node3D
 
 
+@onready var soap_bubble: Node3D = $SoapBubble
+
+
 var velocity = Vector3.ZERO
 var speed = 5.0
 

@@ -1,23 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3r3fe7mvw786"]
+[gd_scene load_steps=10 format=3 uid="uid://c3r3fe7mvw786"]
 
 [ext_resource type="PackedScene" uid="uid://dedqvre2ne1bi" path="res://models/world.glb" id="1_13brs"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_hy3ga"]
 [ext_resource type="PackedScene" uid="uid://hph2m1xcye3" path="res://scenes/level.tscn" id="2_hpliu"]
 [ext_resource type="PackedScene" uid="uid://2yu6c20k7w34" path="res://scenes/water.tscn" id="4_4tp3j"]
+[ext_resource type="Script" path="res://scenes/camera.gd" id="6_iyjup"]
+[ext_resource type="PackedScene" uid="uid://m1ksbs6qt3xo" path="res://models/tree.glb" id="6_y3xfc"]
+[ext_resource type="Texture2D" uid="uid://bnb3tm5edtvdg" path="res://textures/FullMoon.png" id="7_12kvx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcqek"]
+transparency = 1
+albedo_texture = ExtResource("7_12kvx")
+emission_enabled = true
+emission = Color(0.975264, 0.731004, 0.592991, 1)
+emission_energy_multiplier = 2.0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_xoyha"]
+material = SubResource("StandardMaterial3D_xcqek")
+size = Vector2(10, 10)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_hy3ga")
 
 [node name="bathroom" parent="." instance=ExtResource("1_13brs")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-3.8391e-08, -0.47814, 0.878284, -2.09002e-08, 0.878284, 0.47814, -1, 0, -4.37114e-08, 1.554, 1.86887, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.528127, -0.480569, 0.700096, 0, 0.824452, 0.565932, -0.849165, 0.298884, -0.435416, 0, 5.75146, -7.05597)
+transform = Transform3D(-0.43823, 0.508694, -0.74107, -4.61991e-08, 0.824453, 0.565931, 0.898863, 0.248008, -0.3613, -20.5722, 5.75146, -7.26335)
+light_color = Color(0.976471, 0.729412, 0.592157, 1)
 shadow_enabled = true
 
 [node name="Level" parent="." instance=ExtResource("2_hpliu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93044, 0)
 
 [node name="Water" parent="." instance=ExtResource("4_4tp3j")]
+
+[node name="tree" parent="." instance=ExtResource("6_y3xfc")]
+
+[node name="Camera" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.554, 1.86887, 0)
+script = ExtResource("6_iyjup")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 0.877983, 0.478692, 0, -0.478692, 0.877983, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.497, 10.8277, -7.75001)
+mesh = SubResource("QuadMesh_xoyha")

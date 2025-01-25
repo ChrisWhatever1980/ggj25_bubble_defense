@@ -1,11 +1,181 @@
-[gd_scene load_steps=3 format=3 uid="uid://p4bn5mw1xcb"]
+[gd_scene load_steps=18 format=3 uid="uid://p4bn5mw1xcb"]
 
 [ext_resource type="Material" uid="uid://dcmhfrwokafpw" path="res://scenes/soap_bubble_material.tres" id="1_pvw3w"]
+[ext_resource type="Script" path="res://scenes/soap_bubble.gd" id="1_y707r"]
+[ext_resource type="AudioStream" uid="uid://kyknaqapebpb" path="res://audio/244655__greenvwbeetle__pop-1.wav" id="3_driy6"]
+[ext_resource type="AudioStream" uid="uid://bswxpxwljvfp" path="res://audio/244654__greenvwbeetle__pop-2.wav" id="4_tvnxi"]
+[ext_resource type="AudioStream" uid="uid://dw27r5sps22u2" path="res://audio/244653__greenvwbeetle__pop-3.wav" id="5_vms48"]
+[ext_resource type="AudioStream" uid="uid://dy4bfgq0afi1d" path="res://audio/244652__greenvwbeetle__pop-4.wav" id="6_ejpj5"]
+[ext_resource type="AudioStream" uid="uid://db2h548tyltr0" path="res://audio/244657__greenvwbeetle__pop-5.wav" id="7_uqcyx"]
+[ext_resource type="AudioStream" uid="uid://5c63hmlf2w3i" path="res://audio/244656__greenvwbeetle__pop-6.wav" id="8_a34cw"]
+[ext_resource type="AudioStream" uid="uid://dun7d2masheod" path="res://audio/328118__greenvwbeetle__pop-7.wav" id="9_u0xyn"]
+[ext_resource type="AudioStream" uid="uid://d33b0u258mvon" path="res://audio/328117__greenvwbeetle__pop-8.wav" id="10_toy0q"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_duikt"]
 
-[node name="SoapBubble" type="Node3D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wrahy"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+emission_shape_scale = Vector3(0.75, 0.75, 0.75)
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 9.99998
+gravity = Vector3(0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[sub_resource type="CylinderMesh" id="CylinderMesh_dc6ba"]
+top_radius = 0.0
+bottom_radius = 0.02
+height = 0.04
+
+[sub_resource type="Animation" id="Animation_jglwk"]
+resource_name = "pop_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BubblePopSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bubble:material_override:shader_parameter/dissolve")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bubble:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_l652f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bubble:material_override:shader_parameter/dissolve")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bubble:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cf16i"]
+_data = {
+"RESET": SubResource("Animation_l652f"),
+"pop_animation": SubResource("Animation_jglwk")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_80a3o"]
+streams_count = 8
+stream_0/stream = ExtResource("3_driy6")
+stream_1/stream = ExtResource("4_tvnxi")
+stream_2/stream = ExtResource("5_vms48")
+stream_3/stream = ExtResource("6_ejpj5")
+stream_4/stream = ExtResource("7_uqcyx")
+stream_5/stream = ExtResource("8_a34cw")
+stream_6/stream = ExtResource("9_u0xyn")
+stream_7/stream = ExtResource("10_toy0q")
+
+[node name="SoapBubble" type="Node3D"]
+script = ExtResource("1_y707r")
+
+[node name="Bubble" type="MeshInstance3D" parent="."]
 material_override = ExtResource("1_pvw3w")
 mesh = SubResource("SphereMesh_duikt")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wrahy")
+draw_pass_1 = SubResource("CylinderMesh_dc6ba")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cf16i")
+}
+
+[node name="BubblePopSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_80a3o")
+volume_db = 15.0
+max_polyphony = 100
+bus = &"Sfx"

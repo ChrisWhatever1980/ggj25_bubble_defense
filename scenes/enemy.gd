@@ -12,12 +12,14 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	progress_ratio += delta / run_duration
+	if progress_ratio >= 1.0:
+		queue_free()
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
+
 	if area.get_parent().is_in_group("Projectiles"):
 		print("contact")
 		health -= 1
