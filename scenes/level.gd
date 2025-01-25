@@ -13,7 +13,7 @@ var enemies_left : int = 0
 
 @export var waves = [
 	{
-		"EnemyType": Globals.EnemyType.SimpleBoat,
+		"EnemyType": Globals.EnemyType.RubberDuck,
 		"EnemyCount": 5
 	},
 	{
@@ -58,7 +58,7 @@ func on_enemy_destroyed(_wave_idx):
 
 func _on_timer_timeout() -> void:
 	if current_wave_amount > 0:
-		var new_enemy = preload("res://scenes/enemy.tscn").instantiate()
+		var new_enemy = preload("res://scenes/enemy_2.tscn").instantiate()
 		paths.pick_random().add_child(new_enemy)
 		current_wave_amount -= 1
 		if current_wave_amount <= 0:
