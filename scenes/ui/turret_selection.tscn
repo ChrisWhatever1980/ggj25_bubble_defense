@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://erttc2jss7up"]
+
+[ext_resource type="Script" path="res://scenes/ui/turret_selection.gd" id="1_33spo"]
+[ext_resource type="PackedScene" uid="uid://2l0x32turlsl" path="res://scenes/ui/turret_option.tscn" id="1_cadga"]
+
+[node name="TurretSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_33spo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 376.0
+offset_bottom = 648.0
+theme_override_constants/separation = 0
+
+[node name="TurretOption" parent="VBoxContainer" instance=ExtResource("1_cadga")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+
+[node name="TurretOption2" parent="VBoxContainer" instance=ExtResource("1_cadga")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+
+[node name="TurretOption3" parent="VBoxContainer" instance=ExtResource("1_cadga")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+
+[node name="TurretOption4" parent="VBoxContainer" instance=ExtResource("1_cadga")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2

@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://byrcwsu05jfly"]
+[gd_scene load_steps=12 format=3 uid="uid://2l0x32turlsl"]
 
-[ext_resource type="Texture2D" uid="uid://c5tqrxet17k3a" path="res://textures/ui/bubble_1_grayscale.png" id="1_bci2y"]
-[ext_resource type="Texture2D" uid="uid://dch8u75lqy4y7" path="res://textures/ui/bubble_2_grayscale.png" id="2_qwye6"]
-[ext_resource type="Script" path="res://scenes/ui/texture_button.gd" id="3_6jeuv"]
+[ext_resource type="Script" path="res://scenes/ui/turret_option.gd" id="1_8bek7"]
+[ext_resource type="Texture2D" uid="uid://c5tqrxet17k3a" path="res://textures/ui/bubble_1_grayscale.png" id="1_usqaf"]
+[ext_resource type="Texture2D" uid="uid://dch8u75lqy4y7" path="res://textures/ui/bubble_2_grayscale.png" id="2_4jak7"]
+[ext_resource type="Script" path="res://scenes/ui/texture_button.gd" id="3_u8swm"]
+[ext_resource type="Script" path="res://scenes/ui/tower_3d.gd" id="4_g53ko"]
+[ext_resource type="PackedScene" uid="uid://dtigaui88h6l6" path="res://scenes/tower.tscn" id="4_nhngg"]
 
 [sub_resource type="Animation" id="Animation_al2eo"]
 length = 6.0
@@ -77,7 +80,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -40)]
+"values": [Vector2(0, 0), Vector2(0, -10)]
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -132,9 +135,15 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q8v2i"]
 
-[node name="BubbleButton" type="MarginContainer"]
-offset_right = 167.0
-offset_bottom = 176.0
+[sub_resource type="ViewportTexture" id="ViewportTexture_ac6qw"]
+viewport_path = NodePath("SubViewport")
+
+[node name="TurretOption" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
+script = ExtResource("1_8bek7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Panel/TextureButton")
@@ -144,8 +153,12 @@ libraries = {
 autoplay = "SelectLevel"
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(167, 176)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q8v2i")
 
@@ -155,33 +168,48 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 70.0
-offset_right = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("1_bci2y")
-texture_hover = ExtResource("2_qwye6")
+texture_normal = ExtResource("1_usqaf")
+texture_hover = ExtResource("2_4jak7")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("3_6jeuv")
+script = ExtResource("3_u8swm")
+bubble_padding = 10.0
 
-[node name="Label" type="Label" parent="Panel/TextureButton"]
+[node name="Label" type="TextureRect" parent="Panel/TextureButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "Select Level"
+texture = SubResource("ViewportTexture_ac6qw")
+expand_mode = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="Tower3D" type="Node3D" parent="SubViewport"]
+script = ExtResource("4_g53ko")
+
+[node name="Tower" parent="SubViewport/Tower3D" instance=ExtResource("4_nhngg")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Tower3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0638863, 0.161888)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Tower3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.256709, 0.287621, 0.28028)
 
 [connection signal="mouse_entered" from="Panel/TextureButton" to="Panel/TextureButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Panel/TextureButton" to="Panel/TextureButton" method="_on_mouse_exited"]

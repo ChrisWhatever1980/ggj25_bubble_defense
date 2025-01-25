@@ -44,9 +44,6 @@ text = "SELECT_LEVEL"
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="TextureButton" parent="MarginContainer/CenterContainer/VBoxContainer/Settings/Panel" index="0"]
-bubble_padding = 20.0
-
 [node name="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Settings/Panel/TextureButton" index="0"]
 theme_override_font_sizes/font_size = 25
 text = "SETTINGS"
