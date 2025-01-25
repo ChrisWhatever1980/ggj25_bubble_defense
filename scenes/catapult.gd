@@ -46,8 +46,10 @@ func _process(delta: float) -> void:
 			var new_projectile = preload("res://scenes/water_projectile.tscn").instantiate()
 			if switch_emitter:
 				new_projectile.position = left_projectile_emitter.global_position
+				switch_emitter = false
 			else:
 				new_projectile.position = right_projectile_emitter.global_position
+				switch_emitter = true
 			new_projectile.velocity = (target.global_position - self.global_position).normalized()
 			get_parent().add_child(new_projectile)
 			reload_time = reload_duration
