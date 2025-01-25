@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=3 uid="uid://cag3j05aofoih"]
+
+[ext_resource type="Script" path="res://scenes/ui/settings.gd" id="1_unc3e"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_unc3e")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+split_offset = 22
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Optionsleft" type="VBoxContainer" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="LabelWindowMode" type="Label" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer"]
+layout_mode = 2
+text = "WINDOW_MODE"
+
+[node name="OptionButtonWindowMode" type="OptionButton" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "OPTION_WINDOWED"
+popup/item_1/text = "OPTION_WINDOWED_BORDERLESS"
+popup/item_1/id = 3
+popup/item_2/text = "OPTION_FULLSCREEN"
+popup/item_2/id = 4
+
+[node name="LabelResolution" type="Label" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer"]
+layout_mode = 2
+text = "RESOLUTION"
+
+[node name="OptionButtonResolution" type="OptionButton" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer"]
+layout_mode = 2
+
+[node name="LabelLanguage" type="Label" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer"]
+layout_mode = 2
+text = "LANGUAGE"
+
+[node name="OptionButtonLanguage" type="OptionButton" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "ENGLISH"
+popup/item_1/text = "GERMAN"
+popup/item_1/id = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="OptionsRight" type="VBoxContainer" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2/OptionsRight"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelParticleEffects" type="Label" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2/OptionsRight/GridContainer"]
+layout_mode = 2
+text = "ENABLE_PARTICLES"
+
+[node name="CheckBoxParticleEffects" type="CheckBox" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2/OptionsRight/GridContainer"]
+layout_mode = 2
+
+[connection signal="item_selected" from="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer/OptionButtonWindowMode" to="." method="_on_option_button_window_mode_item_selected"]
+[connection signal="item_selected" from="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer/OptionButtonResolution" to="." method="_on_option_button_resolution_item_selected"]
+[connection signal="item_selected" from="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer/OptionButtonLanguage" to="." method="_on_option_button_language_item_selected"]

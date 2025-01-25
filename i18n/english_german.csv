@@ -1,0 +1,13 @@
+keys,en,de
+ENGLISH,English,Englisch
+GERMAN,German,Deutsch
+LANGUAGE,Language,Sprache
+RESOLUTION,Resolution,Auflösung
+WINDOW_MODE,Window Mode,Fenstermodus
+ENABLE_PARTICLES,Enable Particles,Partikel aktivieren
+OPTION_FULLSCREEN,Fullscreen,Vollbildschirm
+OPTION_WINDOWED_BORDERLESS,Window borderless,randloses Fenster
+OPTION_WINDOWED,Window,Fenster
+SELECT_LEVEL,Select Level, Level auswählen
+SETTINGS,Settings,Einstellungen
+QUIT,Quit,Beenden
