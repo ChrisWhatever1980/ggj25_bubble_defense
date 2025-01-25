@@ -85,7 +85,7 @@ bubble_padding = 10.0
 
 [node name="Label" parent="MarginContainer/BubbleButton/Panel/TextureButton" index="0"]
 theme_override_font_sizes/font_size = 25
-text = "Back"
+text = "BACK"
 
 [connection signal="pressed" from="MarginContainer/BubbleButton/Panel/TextureButton" to="." method="_on_back_button_pressed"]
 
