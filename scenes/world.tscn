@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3r3fe7mvw786"]
+[gd_scene load_steps=12 format=3 uid="uid://c3r3fe7mvw786"]
 
 [ext_resource type="PackedScene" uid="uid://dedqvre2ne1bi" path="res://models/world.glb" id="1_13brs"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_hy3ga"]
@@ -21,6 +21,14 @@ billboard_mode = 1
 material = SubResource("StandardMaterial3D_xcqek")
 size = Vector2(10, 10)
 
+[sub_resource type="Environment" id="Environment_lrxqk"]
+background_mode = 1
+background_color = Color(0.0535376, 0, 0.416238, 1)
+background_energy_multiplier = 0.5
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.02
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_hy3ga")
 
@@ -30,7 +38,8 @@ script = ExtResource("1_hy3ga")
 transform = Transform3D(-0.43823, 0.508694, -0.74107, -4.61991e-08, 0.824453, 0.565931, 0.898863, 0.248008, -0.3613, -20.5722, 5.75146, -7.26335)
 light_color = Color(0.976471, 0.729412, 0.592157, 1)
 shadow_enabled = true
-shadow_bias = 0.3
+shadow_bias = 0.0
+shadow_opacity = 0.84
 
 [node name="Level" parent="." instance=ExtResource("2_hpliu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93044, 0)
@@ -65,3 +74,6 @@ grow_vertical = 2
 [node name="ColorRect" type="ColorRect" parent="CenterContainer"]
 custom_minimum_size = Vector2(3, 3)
 layout_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lrxqk")
