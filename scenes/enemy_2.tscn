@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cae16yy8nh0jq"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_y4bo1"]
+[ext_resource type="PackedScene" uid="uid://fsryqikey5yf" path="res://models/Rubber_Duck_fbx.fbx" id="2_xfx62"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rjh18"]
+radius = 0.1
+
+[node name="Enemy2" type="PathFollow3D"]
+script = ExtResource("1_y4bo1")
+
+[node name="Rubber_Duck_fbx" parent="." instance=ExtResource("2_xfx62")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0965046, 0)
+shape = SubResource("SphereShape3D_rjh18")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
