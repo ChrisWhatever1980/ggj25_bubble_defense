@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvrqp6u4lxw61"]
+[gd_scene load_steps=5 format=3 uid="uid://dvrqp6u4lxw61"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_dyfqr"]
 [ext_resource type="PackedScene" uid="uid://b5x4phmjwc8sn" path="res://models/boat.glb" id="1_i64mb"]
 [ext_resource type="PackedScene" uid="uid://c4lvtn5i4ic31" path="res://scenes/soapy_smokey.tscn" id="3_5d46j"]
 
-[node name="Enemy" type="PathFollow3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_0cjar"]
+radius = 0.0799161
+
+[node name="Enemy" type="PathFollow3D" groups=["Enemies"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_dyfqr")
 
@@ -13,3 +16,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="SoapSmoke" parent="boat" instance=ExtResource("3_5d46j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0213486, 0.0520697, -1.86635e-09)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255809, 0)
+shape = SubResource("SphereShape3D_0cjar")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
