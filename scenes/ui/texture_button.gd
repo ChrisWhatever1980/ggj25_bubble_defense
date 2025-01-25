@@ -7,12 +7,17 @@ var prev_self_modulate
 
 func _ready() -> void:
 	randomize()
+	set_bubble_size()	
+	var offset : float = randf_range(0, anim.current_animation_length)
+	anim.advance(offset)
+	GameEvents.language_changed.connect(set_bubble_size)
+
+
+func set_bubble_size() -> void:
 	var labelSize = $"Label".get_size().x
 	var parent = get_parent_control()
 	parent.set_custom_minimum_size(Vector2(labelSize + bubble_padding, labelSize + bubble_padding))
-	
-	var offset : float = randf_range(0, anim.current_animation_length)
-	anim.advance(offset)
+
 
 func _on_mouse_entered() -> void:
 	prev_self_modulate = self_modulate

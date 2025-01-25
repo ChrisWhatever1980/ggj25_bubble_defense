@@ -57,6 +57,7 @@ func _on_option_button_resolution_item_selected(index: int) -> void:
 
 func _on_option_button_language_item_selected(index: int) -> void:
 		TranslationServer.set_locale(languages.find_key(language_control.get_item_text(index)))
+		GameEvents.language_changed.emit()
 
 
 func get_resolution_vec_by_string(resolution_string: String) -> Vector2i:
