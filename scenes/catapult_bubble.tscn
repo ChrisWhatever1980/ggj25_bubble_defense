@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://duu304af2dm21"]
+
+[ext_resource type="Script" path="res://scenes/catapult_bubble.gd" id="1_qgq82"]
+[ext_resource type="PackedScene" uid="uid://p4bn5mw1xcb" path="res://scenes/soap_bubble.tscn" id="2_xq51m"]
+[ext_resource type="PackedScene" uid="uid://1mylxuv5l11g" path="res://models/catapult.glb" id="3_djv0l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8gqga"]
+radius = 0.735
+
+[node name="CatapultBubble" type="Node3D" groups=["TowerBubbles"]]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_qgq82")
+
+[node name="SoapBubble" parent="." instance=ExtResource("2_xq51m")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_8gqga")
+
+[node name="CatapultRotate" type="Node3D" parent="."]
+
+[node name="catapult" parent="CatapultRotate" instance=ExtResource("3_djv0l")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, -0.225315, 0)

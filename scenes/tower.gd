@@ -4,6 +4,7 @@ extends Node3D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var firing_timer: Timer = $FiringTimer
 @onready var pause_timer: Timer = $PauseTimer
+@onready var projectile_emitter: Node3D = $ProjectileEmitter
 
 
 var touching_water = true
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 		if target and firing and reload_time <= 0.0:
 			# todo: create bubble projectiles
 			var new_projectile = preload("res://scenes/bubble_projectile.tscn").instantiate()
-			new_projectile.position = self.position
+			new_projectile.position = projectile_emitter.global_position
 			new_projectile.velocity = (target.global_position - self.global_position).normalized()
 			get_parent().add_child(new_projectile)
 			reload_time = reload_duration
@@ -74,7 +75,7 @@ func fire():
 
 
 func _on_firing_timer_timeout() -> void:
-	animation_tree.set("parameters/ActivateRotation/scale", 0.0)
+	#animation_tree.set("parameters/ActivateRotation/scale", 0.0)
 	pause_timer.start()
 	firing = false
 

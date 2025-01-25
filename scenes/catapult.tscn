@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://vi2ics6occsg"]
+
+[ext_resource type="Script" path="res://scenes/catapult.gd" id="1_p5vka"]
+[ext_resource type="PackedScene" uid="uid://1mylxuv5l11g" path="res://models/catapult.glb" id="3_stnb1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4p8t2"]
+size = Vector3(0.4, 0.8, 0.4)
+
+[node name="Catapult" type="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("1_p5vka")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373718, 0)
+shape = SubResource("BoxShape3D_4p8t2")
+
+[node name="FiringTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="LeftProjectileEmitter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.291695, 0.646935, -0.187977)
+
+[node name="RightProjectileEmitter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297944, 0.649019, -0.187977)
+
+[node name="catapult" parent="." instance=ExtResource("3_stnb1")]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+
+[node name="WaterSplashCatapult" parent="catapult" index="2"]
+transform = Transform3D(-0.117356, 0, -1.02596e-08, 0, 2.17229, 0, 1.02596e-08, 0, -0.117356, 0.0475497, 2.77034, 0.00605929)
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
+[connection signal="timeout" from="PauseTimer" to="." method="_on_pause_timer_timeout"]
+
+[editable path="catapult"]

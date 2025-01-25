@@ -13,7 +13,7 @@ var targeted_object = null
 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ray_query_params = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, -10, 0))
 
 
@@ -52,6 +52,7 @@ func _input(event: InputEvent) -> void:
 				targeted_object.pop()
 				targeted_object = null
 
-	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		camera.rotate_x(-event.relative.y * mouse_sensitivity)
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion:
+			rotate_y(-event.relative.x * mouse_sensitivity)
+			camera.rotate_x(-event.relative.y * mouse_sensitivity)

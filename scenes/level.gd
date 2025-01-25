@@ -25,7 +25,7 @@ var enemies_left : int = 0
 
 func _ready() -> void:
 	GameEvents.enemy_destroyed.connect(on_enemy_destroyed)
-	new_wave(0)
+	#new_wave(0)
 
 
 func new_wave(idx):

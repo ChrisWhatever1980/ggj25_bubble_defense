@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccd8yydv61ufs"]
+
+[ext_resource type="Script" path="res://scenes/water_projectile.gd" id="1_f30l0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_js1ue"]
+albedo_color = Color(0, 0.274904, 0.616546, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_l3a6x"]
+material = SubResource("StandardMaterial3D_js1ue")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ipvbj"]
+radius = 0.0173135
+
+[node name="water_projectile" type="Node3D" groups=["Projectiles"]]
+script = ExtResource("1_f30l0")
+
+[node name="WaterBubble" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l3a6x")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ipvbj")

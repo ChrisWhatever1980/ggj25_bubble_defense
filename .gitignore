@@ -3,3 +3,4 @@
 /android/
 *.import
 /textures/*.png~
+/scenes/*.tmp

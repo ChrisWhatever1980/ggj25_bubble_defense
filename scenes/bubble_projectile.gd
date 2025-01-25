@@ -6,6 +6,7 @@ extends Node3D
 
 var velocity = Vector3.ZERO
 var speed = 2.5
+var damage = 0.5
 
 
 # Called when the node enters the scene tree for the first time.
