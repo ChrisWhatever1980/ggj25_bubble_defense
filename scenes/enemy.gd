@@ -37,6 +37,6 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 					3:
 						new_fish = preload("res://scenes/fish3.tscn").instantiate()
 				new_fish.position = self.global_position
-				get_parent().get_parent().add_child(new_fish)
+				get_parent().get_parent().get_parent().add_child(new_fish)
 
 			queue_free()

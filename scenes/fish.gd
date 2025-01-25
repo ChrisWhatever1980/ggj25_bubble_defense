@@ -2,10 +2,11 @@ extends Node3D
 
 
 @onready var fish: Node3D = $fish
+@onready var soap_bubble: Node3D = $SoapBubble
 
 
 var direction = Vector3.UP
-var speed = 1.0
+var speed = 0.25
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,3 +21,15 @@ func _process(delta: float) -> void:
 
 	fish.rotate_x(delta)
 	fish.rotate_z(delta)
+
+
+func pop():
+	soap_bubble.pop()
+
+	GameEvents.fish_collected.emit()
+
+	fish.visible = false
+
+	await get_tree().create_timer(1.0).timeout
+
+	queue_free()

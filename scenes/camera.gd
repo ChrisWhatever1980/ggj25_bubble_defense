@@ -32,8 +32,13 @@ func _physics_process(_delta):
 
 	var object_result = space_state.intersect_ray(ray_query_params)
 	if object_result:
-		#print("Hitting object " + object_result.collider.get_parent().name)
-		targeted_object = object_result.collider.get_parent()
+		var target_name = object_result.collider.get_parent().name
+		if target_name == "water_model":
+			targeted_object = null
+		else:
+			targeted_object = object_result.collider.get_parent()
+	else:
+		targeted_object = null
 
 
 func _input(event: InputEvent) -> void:
@@ -42,6 +47,10 @@ func _input(event: InputEvent) -> void:
 		if targeted_object:
 			if targeted_object.is_in_group("TowerBubbles"):
 				targeted_object.pop()
+				targeted_object = null
+			elif targeted_object.is_in_group("Fishes"):
+				targeted_object.pop()
+				targeted_object = null
 
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)

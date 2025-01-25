@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://br0jpnjhsa0xs"]
+[gd_scene load_steps=5 format=3 uid="uid://br0jpnjhsa0xs"]
 
 [ext_resource type="Script" path="res://scenes/fish.gd" id="1_bpvgb"]
 [ext_resource type="PackedScene" uid="uid://p4bn5mw1xcb" path="res://scenes/soap_bubble.tscn" id="1_vo564"]
 [ext_resource type="PackedScene" uid="uid://dsav77jk0xhq3" path="res://models/fish3.glb" id="2_gaaut"]
 
-[node name="Fish" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_3evpf"]
+radius = 0.735
+
+[node name="Fish" type="Node3D" groups=["Fishes"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 script = ExtResource("1_bpvgb")
 
@@ -12,3 +15,8 @@ script = ExtResource("1_bpvgb")
 
 [node name="fish" parent="." instance=ExtResource("2_gaaut")]
 transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0.0808629, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_3evpf")

@@ -39,7 +39,7 @@ func new_wave(idx):
 	print("Wave" + str(current_wave_idx) + " started: " + str(current_wave_amount) + " / " + str(waves[current_wave_idx].EnemyCount))
 
 
-func on_enemy_destroyed(wave_idx):
+func on_enemy_destroyed(_wave_idx):
 	enemies_left -= 1
 
 	GameEvents.wave_info_update.emit(current_wave_idx, enemies_left, waves[current_wave_idx].EnemyCount)

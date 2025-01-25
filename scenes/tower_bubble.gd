@@ -32,4 +32,8 @@ func pop():
 	new_tower.touching_water = false
 	get_parent().add_child(new_tower)
 
+	tower_rotate.visible = false
+
+	await get_tree().create_timer(1.0).timeout
+
 	queue_free()
