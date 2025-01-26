@@ -87,3 +87,7 @@ func get_resolution_string_by_vec(resolution_vec: Vector2i) -> String:
 func _on_back_button_pressed() -> void:
 	visible = false
 	GameEvents.show_main_menu.emit()
+
+
+func _on_check_box_tutorial_toggled(toggled_on: bool) -> void:
+	GameEvents.toggle_tutorial.emit(toggled_on)
