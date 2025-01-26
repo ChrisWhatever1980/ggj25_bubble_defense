@@ -2,5 +2,9 @@ extends Node
 
 enum EnemyType
 {
-	SimpleBoat
+	SimpleBoat,
+	RubberDuck,
+	Squid,
+	Turd,
+	Boss
 }

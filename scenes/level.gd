@@ -1,10 +1,10 @@
 extends Node3D
 
 
-@onready var paths = [$Path3D]
 @onready var spawn_enemy_timer: Timer = $SpawnEnemyTimer
 
 
+var paths = []
 var current_wave_idx : int = 0
 var current_wave_amount : int = 5
 var current_wave_enemy : Globals.EnemyType = Globals.EnemyType.SimpleBoat
@@ -25,7 +25,10 @@ var enemies_left : int = 0
 
 func _ready() -> void:
 	GameEvents.enemy_destroyed.connect(on_enemy_destroyed)
-	#new_wave(0)
+
+	for c in get_children():
+		if c is Path3D:
+			paths.append(c)
 
 
 func new_wave(idx):
