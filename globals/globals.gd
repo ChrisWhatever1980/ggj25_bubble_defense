@@ -12,5 +12,6 @@ enum EnemyType
 enum TurretType
 {
 	WindMill,
-	Catapult
+	Catapult,
+	Bomb
 }

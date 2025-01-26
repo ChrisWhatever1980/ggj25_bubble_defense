@@ -1,26 +1,96 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddogkbtaau67g"]
+[gd_scene load_steps=12 format=3 uid="uid://ddogkbtaau67g"]
 
-[ext_resource type="Material" uid="uid://dcmhfrwokafpw" path="res://scenes/soap_bubble_material.tres" id="1_2p5pc"]
+[ext_resource type="Shader" path="res://soap_bubble.gdshader" id="1_vsv5a"]
+[ext_resource type="Script" path="res://scenes/bath_bomb_bubbles.gd" id="2_urux5"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ic6tu"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_36iee"]
 emission_shape = 1
 emission_sphere_radius = 0.2
-direction = Vector3(2, 0, 2)
+direction = Vector3(1, 0, 1)
 spread = 180.0
-initial_velocity_min = 0.2
-initial_velocity_max = 0.4
-gravity = Vector3(0, 1, 0)
+flatness = 1.0
+initial_velocity_min = 0.8
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
 damping_min = 1.5
 damping_max = 1.5
 
-[sub_resource type="SphereMesh" id="SphereMesh_ilp4n"]
-material = ExtResource("1_2p5pc")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8ayi"]
+load_path = "res://.godot/imported/soap_bubble_color.png-93c986f179eecfeb5918cf44e28bfea5.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i0pqp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ika3w"]
+seamless = true
+noise = SubResource("FastNoiseLite_i0pqp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1kup"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_vsv5a")
+shader_parameter/fresnel_modifier = 0.2
+shader_parameter/bubble_size = 0.02
+shader_parameter/smoothness = 0.05
+shader_parameter/dissolve = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ika3w")
+shader_parameter/color_texture = SubResource("CompressedTexture2D_s8ayi")
+
+[sub_resource type="SphereMesh" id="SphereMesh_xjso1"]
+material = SubResource("ShaderMaterial_c1kup")
 radius = 0.05
 height = 0.1
 
-[node name="StreamBubbles" type="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.309172, 0)
-amount = 50
+[sub_resource type="Animation" id="Animation_plx60"]
+resource_name = "bubbling_animation"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.03333, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"stop_emitting"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ahny4"]
+_data = {
+"bubbling_animation": SubResource("Animation_plx60")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tko7w"]
+radius = 0.979688
+
+[node name="BathBombBubbles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0224343, 0)
+amount = 150
 lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_ic6tu")
-draw_pass_1 = SubResource("SphereMesh_ilp4n")
+process_material = SubResource("ParticleProcessMaterial_36iee")
+draw_pass_1 = SubResource("SphereMesh_xjso1")
+script = ExtResource("2_urux5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ahny4")
+}
+autoplay = "bubbling_animation"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_tko7w")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -6,7 +6,8 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = $bathroom/body/AnimationPlayer
 @onready var turrets: Dictionary = {
 	Globals.TurretType.WindMill: preload("res://scenes/tower_bubble.tscn"),
-	Globals.TurretType.Catapult: preload("res://scenes/catapult_bubble.tscn")
+	Globals.TurretType.Catapult: preload("res://scenes/catapult_bubble.tscn"),
+	Globals.TurretType.Bomb: preload("res://scenes/bath_bomb_bubble.tscn")
 }
 @onready var selected_turret: int = Globals.TurretType.WindMill
 @onready var wiggle_timer: Timer = $bathroom/body/WiggleTimer
@@ -28,10 +29,20 @@ func _process(_delta: float) -> void:
 		animation_player.play("LegWipping")
 
 	if Input.is_action_just_pressed("spawn_tower_bubble"):
-		spawn_tower()
+		spawn_bath_bomb()
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+
+
+func spawn_bath_bomb():
+	var new_bomb = turrets[Globals.TurretType.Bomb].instantiate()
+	new_bomb.position = camera_3d.global_position
+	new_bomb.position.y -= 0.1
+
+	new_bomb.direction = -camera_3d.global_basis.z
+
+	add_child(new_bomb)
 
 
 func spawn_tower():

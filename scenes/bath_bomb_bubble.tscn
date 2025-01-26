@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d285gs5jynami"]
+
+[ext_resource type="Script" path="res://scenes/bath_bomb_bubble.gd" id="1_edd5u"]
+[ext_resource type="PackedScene" uid="uid://p4bn5mw1xcb" path="res://scenes/soap_bubble.tscn" id="2_a6kpa"]
+[ext_resource type="PackedScene" uid="uid://bpdmavokvsxso" path="res://scenes/bath_bomb.tscn" id="3_c27dh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8gqga"]
+radius = 0.735
+
+[node name="BathBombBubble" type="Node3D" groups=["TowerBubbles"]]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_edd5u")
+
+[node name="SoapBubble" parent="." instance=ExtResource("2_a6kpa")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_8gqga")
+
+[node name="BathBomb" parent="." instance=ExtResource("3_c27dh")]

@@ -17,24 +17,28 @@ func _process(delta: float) -> void:
 		queue_free()
 
 
+func take_damage():
+	health -= 1
+	if health <= 0:
+		GameEvents.enemy_destroyed.emit(wave_idx)
+
+		# spawn fishes
+		for f in range(0, 3):
+			var  new_fish = null
+			match randi_range(1, 3):
+				1:
+					new_fish = preload("res://scenes/fish1.tscn").instantiate()
+				2:
+					new_fish = preload("res://scenes/fish2.tscn").instantiate()
+				3:
+					new_fish = preload("res://scenes/fish3.tscn").instantiate()
+			new_fish.position = self.global_position
+			get_parent().get_parent().get_parent().add_child(new_fish)
+
+		queue_free()
+
+
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.get_parent().is_in_group("Projectiles"):
-		health -= 1
 		area.get_parent().queue_free()
-		if health <= 0:
-			GameEvents.enemy_destroyed.emit(wave_idx)
-
-			# spawn fishes
-			for f in range(0, 3):
-				var  new_fish = null
-				match randi_range(1, 3):
-					1:
-						new_fish = preload("res://scenes/fish1.tscn").instantiate()
-					2:
-						new_fish = preload("res://scenes/fish2.tscn").instantiate()
-					3:
-						new_fish = preload("res://scenes/fish3.tscn").instantiate()
-				new_fish.position = self.global_position
-				get_parent().get_parent().get_parent().add_child(new_fish)
-
-			queue_free()
+		take_damage()

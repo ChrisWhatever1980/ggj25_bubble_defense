@@ -3,6 +3,7 @@ shader_type spatial;
 uniform sampler2D noise_texture;
 uniform sampler2D color_texture;
 
+uniform float fresnel_modifier = 0.0;
 uniform float bubble_size = 0.5;
 uniform float smoothness : hint_range(0.0, 1.0, 0.01);
 uniform float dissolve : hint_range(0.0, 2.0, 0.01);
@@ -34,5 +35,5 @@ void fragment() {
 
 	ALBEDO = texture(color_texture, world_position.xz + vec2(TIME * 0.05)).rgb;
 	ROUGHNESS = 0.0f;
-	ALPHA = fresnel;
+	ALPHA = fresnel + fresnel_modifier;
 }

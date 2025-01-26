@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpdmavokvsxso"]
+[gd_scene load_steps=9 format=3 uid="uid://bpdmavokvsxso"]
 
 [ext_resource type="Script" path="res://scenes/bath_bomb.gd" id="1_fk7sk"]
 [ext_resource type="Shader" path="res://bath_bomb.gdshader" id="2_xq7as"]
@@ -23,8 +23,11 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_vtlna")
 shader_parameter/color_texture = SubResource("CompressedTexture2D_xkw0m")
 
 [sub_resource type="SphereMesh" id="SphereMesh_duikt"]
-radius = 0.25
-height = 0.5
+radius = 0.01
+height = 0.02
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lwkws"]
+radius = 0.0962421
 
 [node name="BathBomb" type="Node3D"]
 script = ExtResource("1_fk7sk")
@@ -32,3 +35,10 @@ script = ExtResource("1_fk7sk")
 [node name="Bomb" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_plutl")
 mesh = SubResource("SphereMesh_duikt")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_lwkws")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
