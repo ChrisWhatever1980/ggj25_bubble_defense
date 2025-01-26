@@ -91,3 +91,8 @@ func _on_back_button_pressed() -> void:
 
 func _on_check_box_tutorial_toggled(toggled_on: bool) -> void:
 	GameEvents.toggle_tutorial.emit(toggled_on)
+
+
+func _on_check_box_particle_effects_toggled(toggled_on: bool) -> void:
+	GameEvents.toggle_particle_effects.emit(toggled_on)
+	Globals.emit_particles = toggled_on

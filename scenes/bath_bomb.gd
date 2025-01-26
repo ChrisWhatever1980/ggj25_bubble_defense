@@ -18,11 +18,14 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 func explode() -> void:
 	touching_water = true
-	# spawn particle system
+	GameEvents.change_water_color.emit()
+
+	if (Globals.emit_particles):
+		spawn_bubbles()
+
+	queue_free()
+
+func spawn_bubbles() -> void:
 	var new_bath_bomb_bubbles = preload("res://scenes/bath_bomb_bubbles.tscn").instantiate()
 	new_bath_bomb_bubbles.position = self.position
 	get_parent().add_child(new_bath_bomb_bubbles)
-
-	GameEvents.change_water_color.emit()
-
-	queue_free()
