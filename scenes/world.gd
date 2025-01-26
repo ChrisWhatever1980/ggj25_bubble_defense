@@ -64,18 +64,18 @@ func select_level(level_id: int) -> void:
 	
 	if level_id == 0:
 		# new game
-		GameEvents.show_message.emit("Defend your bubble bath from an invasion!", 5.0)
+		GameEvents.show_message.emit(tr("DEFEND YOUR BUBBLE BATH FROM AN INVASION!"), 5.0)
 		await get_tree().create_timer(5.0).timeout
-		GameEvents.show_message.emit("Right click to let a tower bubble fly.", 3.0)
+		GameEvents.show_message.emit(tr("RIGHT CLICK TO LET A TOWER BUBBLE FLY."), 3.0)
 		await get_tree().create_timer(3.5).timeout
-		GameEvents.show_message.emit("Left click the bubble to make it pop where you want the tower.", 4.0)
+		GameEvents.show_message.emit(tr("LEFT CLICK THE BUBBLE TO MAKE IT POP WHERE YOU WANT THE TOWER."), 4.0)
 
 
 func return_to_menu(completed_level_idx, win):
 	if win:
-		GameEvents.show_message.emit("You defended your bubble bath. Now relax!", 5.0)
+		GameEvents.show_message.emit(tr("YOU DEFENDED YOUR BUBBLE BATH. NOW RELAX!"), 5.0)
 	else:
-		GameEvents.show_message.emit("Your bubble bath was ruined. Ruined! Muhaha!", 5.0)
+		GameEvents.show_message.emit(tr("YOUR BUBBLE BATH WAS RUINED. RUINED! MUHAHA!"), 5.0)
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menu_camera.current = true
