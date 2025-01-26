@@ -10,6 +10,12 @@ func _ready() -> void:
 		else:
 			print('Error with level selection btn structure')
 		i += 1
+	
+	GameEvents.show_level_menu.connect(show_level_menu)
+
+
+func show_level_menu() -> void:
+	visible = true
 
 
 func _on_back_button_pressed() -> void:

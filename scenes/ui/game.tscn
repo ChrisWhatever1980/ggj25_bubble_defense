@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3bbogsnqtqnh"]
+[gd_scene load_steps=3 format=3 uid="uid://d3bbogsnqtqnh"]
 
+[ext_resource type="Script" path="res://scenes/ui/game.gd" id="1_6e4im"]
 [ext_resource type="PackedScene" uid="uid://erttc2jss7up" path="res://scenes/ui/turret_selection.tscn" id="1_e2uf2"]
 
 [node name="Game" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6e4im")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

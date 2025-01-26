@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c3r3fe7mvw786"]
+[gd_scene load_steps=26 format=3 uid="uid://c3r3fe7mvw786"]
 
 [ext_resource type="PackedScene" uid="uid://blewhb7ixfy1h" path="res://models/world.glb" id="1_13brs"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_hy3ga"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bsq5cwdtixaro" path="res://scenes/ui/main.tscn" id="9_c7xgw"]
 [ext_resource type="PackedScene" uid="uid://cag3j05aofoih" path="res://scenes/ui/settings.tscn" id="10_vcr3a"]
 [ext_resource type="PackedScene" uid="uid://d3bbogsnqtqnh" path="res://scenes/ui/game.tscn" id="11_keo3p"]
+[ext_resource type="PackedScene" uid="uid://b2a21clltbf50" path="res://scenes/ui/level_selection.tscn" id="14_bi2qc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71dfa"]
 emission_enabled = true
@@ -175,7 +176,9 @@ shadow_enabled = true
 shadow_bias = 0.0
 shadow_opacity = 0.84
 
-[node name="Level" parent="." instance=ExtResource("2_hpliu")]
+[node name="LevelWrapper" type="Node3D" parent="."]
+
+[node name="Level" parent="LevelWrapper" instance=ExtResource("2_hpliu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93044, 0)
 
 [node name="Water" parent="." instance=ExtResource("4_4tp3j")]
@@ -219,15 +222,25 @@ spot_angle = 14.7311
 
 [node name="Ui" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Game" parent="Ui" instance=ExtResource("11_keo3p")]
+visible = false
 layout_mode = 1
 
 [node name="Main" parent="Ui" instance=ExtResource("9_c7xgw")]
 layout_mode = 1
 
 [node name="Settings" parent="Ui" instance=ExtResource("10_vcr3a")]
+visible = false
+layout_mode = 1
+
+[node name="LevelSelection" parent="Ui" instance=ExtResource("14_bi2qc")]
+visible = false
 layout_mode = 1
