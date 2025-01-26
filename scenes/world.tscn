@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3lfmkysltc3c" path="res://scenes/stream_bubbles.tscn" id="3_wsvsc"]
 [ext_resource type="PackedScene" uid="uid://2yu6c20k7w34" path="res://scenes/water.tscn" id="4_4tp3j"]
 [ext_resource type="PackedScene" uid="uid://dqb3e7ahmx8ux" path="res://models/body.glb" id="4_566e5"]
-[ext_resource type="PackedScene" uid="uid://dntkrqr4tpjph" path="res://models/castle.glb" id="5_jsxgy"]
+[ext_resource type="PackedScene" uid="uid://dqnbdyjmgu6p4" path="res://scenes/castle.tscn" id="5_yc415"]
 [ext_resource type="PackedScene" uid="uid://rh4trif6ubww" path="res://scenes/coffee_table.tscn" id="6_hkj0k"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="6_iyjup"]
 [ext_resource type="Texture2D" uid="uid://bnb3tm5edtvdg" path="res://textures/FullMoon.png" id="7_12kvx"]
@@ -205,8 +205,8 @@ mesh = SubResource("CylinderMesh_dpc04")
 wait_time = 0.1
 autostart = true
 
-[node name="castle" parent="bathroom" instance=ExtResource("5_jsxgy")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.16257, 0.933218, -0.0769365)
+[node name="Castle" parent="bathroom" instance=ExtResource("5_yc415")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.16257, 1.04623, -0.0769365)
 
 [node name="CoffeeTable" parent="bathroom" instance=ExtResource("6_hkj0k")]
 

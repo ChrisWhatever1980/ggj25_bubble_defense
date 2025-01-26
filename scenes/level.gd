@@ -29,6 +29,7 @@ var first_enemy_destroyed = false
 
 func _ready() -> void:
 	GameEvents.enemy_destroyed.connect(on_enemy_destroyed)
+	GameEvents.enemy_finished.connect(on_enemy_finished)
 
 	for c in get_children():
 		if c is Path3D:
@@ -61,6 +62,25 @@ func on_enemy_destroyed(_wave_idx):
 	if enemies_left <= 0:
 		#print("Wave defeated")
 		GameEvents.wave_defeated.emit(current_wave_idx)
+		if current_wave_idx + 1 == waves.size():
+			# all waves defeated, level completed
+			#print("Level completed")
+			GameEvents.level_completed.emit(level_idx)
+		else:
+			new_wave(current_wave_idx + 1)
+
+
+func on_enemy_finished():
+
+	GameEvents.show_message.emit(tr("BUILD_TOWERS"), 4.0)
+
+	enemies_left -= 1
+
+	GameEvents.wave_info_update.emit(current_wave_idx, enemies_left, waves[current_wave_idx].EnemyCount)
+	#print("Wave Update: Wave " + str(current_wave_idx) + ": " + str(enemies_left) + " / " + str(waves[current_wave_idx].EnemyCount))
+
+	if enemies_left <= 0:
+		#print("Wave defeated")
 		if current_wave_idx + 1 == waves.size():
 			# all waves defeated, level completed
 			#print("Level completed")

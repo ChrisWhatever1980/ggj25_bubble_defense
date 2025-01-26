@@ -35,6 +35,11 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+	
+	if Input.is_action_pressed("ui_right"):
+		Engine.time_scale = 3.0
+	else:
+		Engine.time_scale = 1.0
 
 
 func spawn_tower():

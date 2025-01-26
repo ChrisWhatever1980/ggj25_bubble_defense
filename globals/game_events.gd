@@ -10,6 +10,7 @@ signal select_turret(turret_id: int)
 signal spawn_tower
 signal game_over
 signal change_water_color
+signal enemy_finished
 
 
 ## UI exclusive

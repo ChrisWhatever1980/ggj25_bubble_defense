@@ -10,6 +10,7 @@ size = Vector3(2.52856, 2.24249, 2.46191)
 script = ExtResource("1_hn732")
 
 [node name="castle" parent="." instance=ExtResource("1_pwl4c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0031004, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13119, 0)
