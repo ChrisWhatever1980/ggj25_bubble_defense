@@ -18,3 +18,4 @@ signal show_settings_menu
 signal show_level_menu
 signal show_game_ui
 signal show_message
+signal toggle_tutorial(toggled_on: bool)

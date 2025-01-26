@@ -12,6 +12,7 @@ extends Node3D
 @onready var selected_turret: int = Globals.TurretType.WindMill
 @onready var wiggle_timer: Timer = $bathroom/body/WiggleTimer
 @onready var menu_camera: Camera3D = $MenuCamera
+@onready var tutorial_enabled: bool = true
 
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _ready() -> void:
 	GameEvents.spawn_tower.connect(spawn_tower)
 	GameEvents.level_completed.connect(return_to_menu.bind(true))
 	GameEvents.game_over.connect(return_to_menu.bind(false))
+	GameEvents.toggle_tutorial.connect(toggle_tutorial)
 
 
 func _process(_delta: float) -> void:
@@ -52,7 +54,7 @@ func select_level(level_id: int) -> void:
 	stream.visible = true
 	GameEvents.show_game_ui.emit()
 	
-	if level_id == 0:
+	if level_id == 0 && tutorial_enabled:
 		# new game
 		GameEvents.show_message.emit(tr("DEFEND YOUR BUBBLE BATH FROM AN INVASION!"), 5.0)
 		await get_tree().create_timer(5.0).timeout
@@ -80,6 +82,10 @@ func select_turret(turret_id: int) -> void:
 func _on_wiggle_timer_timeout() -> void:
 	animation_player.play("LegWipping")
 	wiggle_timer.wait_time = randf_range(10.0, 20.0)
+
+
+func toggle_tutorial(toggled_on: bool) -> void:
+	tutorial_enabled = toggled_on
 
 
 func _on_jazz_music_finished() -> void:

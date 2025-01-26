@@ -103,6 +103,14 @@ text = "ENABLE_PARTICLES"
 [node name="CheckBoxParticleEffects" type="CheckBox" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2/OptionsRight/GridContainer"]
 layout_mode = 2
 
+[node name="LabelTutorial" type="Label" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2/OptionsRight/GridContainer"]
+layout_mode = 2
+text = "ENABLE_TUTORIAL"
+
+[node name="CheckBoxTutorial" type="CheckBox" parent="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2/OptionsRight/GridContainer"]
+layout_mode = 2
+button_pressed = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -131,6 +139,7 @@ text = "BACK"
 [connection signal="item_selected" from="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer/OptionButtonWindowMode" to="." method="_on_option_button_window_mode_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer/OptionButtonResolution" to="." method="_on_option_button_resolution_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/HSplitContainer/MarginContainer/Optionsleft/GridContainer/OptionButtonLanguage" to="." method="_on_option_button_language_item_selected"]
+[connection signal="toggled" from="CenterContainer/MarginContainer/HSplitContainer/MarginContainer2/OptionsRight/GridContainer/CheckBoxTutorial" to="." method="_on_check_box_tutorial_toggled"]
 [connection signal="pressed" from="MarginContainer/BubbleButton/Panel/TextureButton" to="." method="_on_back_button_pressed"]
 
 [editable path="MarginContainer/BubbleButton"]
