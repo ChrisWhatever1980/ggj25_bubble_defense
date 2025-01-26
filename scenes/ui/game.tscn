@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3bbogsnqtqnh"]
+[gd_scene load_steps=8 format=3 uid="uid://d3bbogsnqtqnh"]
 
 [ext_resource type="Script" path="res://scenes/ui/game.gd" id="1_6e4im"]
 [ext_resource type="PackedScene" uid="uid://erttc2jss7up" path="res://scenes/ui/turret_selection.tscn" id="1_e2uf2"]
 [ext_resource type="Script" path="res://scenes/ui/message_text.gd" id="3_c88od"]
+[ext_resource type="PackedScene" uid="uid://bcakn518414go" path="res://scenes/ui/points.tscn" id="4_6aurv"]
 
 [sub_resource type="Animation" id="Animation_61x63"]
 length = 0.001
@@ -141,6 +142,7 @@ size_flags_vertical = 8
 mouse_filter = 2
 
 [node name="MessageText" type="Label" parent="MarginContainer/Message"]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Defend your bubble bath from an invasion."
@@ -148,6 +150,11 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
 script = ExtResource("3_c88od")
+
+[node name="Points" parent="MarginContainer" instance=ExtResource("4_6aurv")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer"]
 libraries = {

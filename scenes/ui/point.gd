@@ -2,4 +2,5 @@ extends Node3D
 
 
 func _process(delta: float) -> void:
-	$Tower.rotation.y += delta * 0.7
+	$Fish.rotation.y += delta * 0.7
+	$Fish.speed = 0
