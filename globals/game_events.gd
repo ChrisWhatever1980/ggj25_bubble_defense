@@ -21,3 +21,4 @@ signal show_level_menu
 signal show_game_ui
 signal show_message
 signal toggle_tutorial(toggled_on: bool)
+signal toggle_particle_effects(toggled_on: bool)

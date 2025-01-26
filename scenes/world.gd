@@ -23,6 +23,7 @@ func _ready() -> void:
 	GameEvents.level_completed.connect(return_to_menu.bind(true))
 	GameEvents.game_over.connect(return_to_menu.bind(false))
 	GameEvents.toggle_tutorial.connect(toggle_tutorial)
+	GameEvents.toggle_particle_effects.connect(toggle_particles)
 
 
 func _process(_delta: float) -> void:
@@ -91,6 +92,10 @@ func _on_wiggle_timer_timeout() -> void:
 
 func toggle_tutorial(toggled_on: bool) -> void:
 	tutorial_enabled = toggled_on
+
+
+func toggle_particles(toggled_on: bool) -> void:
+	stream.visible = toggled_on
 
 
 func _on_jazz_music_finished() -> void:

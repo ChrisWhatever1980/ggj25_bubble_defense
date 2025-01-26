@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4lvtn5i4ic31"]
+[gd_scene load_steps=7 format=3 uid="uid://c4lvtn5i4ic31"]
 
 [ext_resource type="Material" uid="uid://dcmhfrwokafpw" path="res://scenes/soap_bubble_material.tres" id="1_f5qka"]
+[ext_resource type="Script" path="res://scenes/soapy_smokey.gd" id="1_mmb4h"]
 
 [sub_resource type="Curve" id="Curve_6h3lj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 0.133905), 0.0, 0.0, 0, 0, Vector2(1, 0.133905), 0.0, 0.0, 0, 0]
@@ -24,6 +25,7 @@ radius = 0.1
 height = 0.2
 
 [node name="SoapSmoke" type="Node3D"]
+script = ExtResource("1_mmb4h")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)

@@ -62,17 +62,7 @@ func _on_option_button_resolution_item_selected(index: int) -> void:
 
 func _on_option_button_language_item_selected(index: int) -> void:
 		TranslationServer.set_locale(languages.find_key(language_control.get_item_text(index)))
-		var timer = Timer.new()
-		add_child(timer)
-		timer.one_shot = true
-		timer.wait_time = 0.1
-		timer.timeout.connect(emit_language_change_event)
-		timer.start()
-
-
-func emit_language_change_event() -> void:
-	#print("TIMER")
-	GameEvents.language_changed.emit()
+		GameEvents.language_changed.emit()
 
 
 func get_resolution_vec_by_string(resolution_string: String) -> Vector2i:
@@ -91,3 +81,8 @@ func _on_back_button_pressed() -> void:
 
 func _on_check_box_tutorial_toggled(toggled_on: bool) -> void:
 	GameEvents.toggle_tutorial.emit(toggled_on)
+
+
+func _on_check_box_particle_effects_toggled(toggled_on: bool) -> void:
+	GameEvents.toggle_particle_effects.emit(toggled_on)
+	Globals.emit_particles = toggled_on

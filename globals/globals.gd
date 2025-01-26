@@ -15,3 +15,5 @@ enum TurretType
 	Catapult,
 	Bomb
 }
+
+var emit_particles: bool = true

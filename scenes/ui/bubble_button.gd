@@ -17,7 +17,6 @@ func _ready() -> void:
 	btn.mouse_exited.connect(_on_mouse_exited)
 	
 func _on_mouse_entered() -> void:
-	print('mouse entered')
 	anim.pause()
 
 
