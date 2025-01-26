@@ -62,14 +62,14 @@ theme_override_constants/separation = 50
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label" parent="MarginContainer/CenterContainer/VBoxContainer/SelectLevel/Panel/TextureButton" index="0"]
+[node name="Label" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/SelectLevel/Panel/TextureButton" index="0"]
 text = "SELECT_LEVEL"
 
 [node name="Settings" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer" instance=ExtResource("1_e1h1k")]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Settings/Panel/TextureButton" index="0"]
+[node name="Label" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/Settings/Panel/TextureButton" index="0"]
 theme_override_font_sizes/font_size = 25
 text = "SETTINGS"
 
@@ -77,7 +77,7 @@ text = "SETTINGS"
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Quit/Panel/TextureButton" index="0"]
+[node name="Label" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/Quit/Panel/TextureButton" index="0"]
 theme_override_font_sizes/font_size = 20
 text = "QUIT"
 
