@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://byrcwsu05jfly" path="res://scenes/ui/bubble_button.tscn" id="1_e1h1k"]
 [ext_resource type="Script" path="res://scenes/ui/main.gd" id="1_ucle5"]
-[ext_resource type="Texture2D" uid="uid://cafn1odqf0ewc" path="res://textures/ui/Logo.png" id="2_prp37"]
+[ext_resource type="Texture2D" uid="uid://ifjsbeqbmqi6" path="res://textures/ui/Logo.png" id="2_prp37"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -39,10 +39,10 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/CenterContainer2/Control"]
 layout_mode = 2
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_left = -357.0
+offset_top = -268.0
+offset_right = -57.0
+offset_bottom = 32.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("2_prp37")
@@ -62,12 +62,20 @@ theme_override_constants/separation = 50
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="TextureButton" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/SelectLevel/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
+
 [node name="Label" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/SelectLevel/Panel/TextureButton" index="0"]
 text = "SELECT_LEVEL"
 
 [node name="Settings" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer" instance=ExtResource("1_e1h1k")]
 layout_mode = 2
 size_flags_horizontal = 0
+
+[node name="TextureButton" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/Settings/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
 
 [node name="Label" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/Settings/Panel/TextureButton" index="0"]
 theme_override_font_sizes/font_size = 25
@@ -76,6 +84,10 @@ text = "SETTINGS"
 [node name="Quit" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer" instance=ExtResource("1_e1h1k")]
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="TextureButton" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/Quit/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
 
 [node name="Label" parent="MarginContainer/HSplitContainer/CenterContainer/VBoxContainer/Quit/Panel/TextureButton" index="0"]
 theme_override_font_sizes/font_size = 20

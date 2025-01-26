@@ -266,6 +266,13 @@ shadow_enabled = true
 spot_range = 7.47708
 spot_angle = 18.4012
 
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.757702, 0.652601, 0, -0.652601, 0.757702, -1.11876, 6.65487, -1.33031)
+light_energy = 3.0
+shadow_enabled = true
+spot_range = 7.47708
+spot_angle = 37.9688
+
 [node name="Ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15

@@ -32,8 +32,8 @@ waves = [{
 "EnemyCount": 8,
 "EnemyType": 2
 }, {
-"EnemyCount": 1,
-"EnemyType": 4
+"EnemyCount": 5,
+"EnemyType": 3
 }]
 
 [node name="GridMap" type="GridMap" parent="."]

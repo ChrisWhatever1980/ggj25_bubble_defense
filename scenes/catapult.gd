@@ -11,7 +11,7 @@ extends Node3D
 var touching_water = true
 var firing = false
 var target = null
-var reload_duration = 0.1
+var reload_duration = 0.3
 var reload_time = 0.0
 var switch_emitter = true
 
@@ -25,7 +25,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not touching_water:
 		position.y += -1.0 * 0.2 * delta
-		
 
 	if touching_water:
 		if not target:

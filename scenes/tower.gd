@@ -10,7 +10,7 @@ extends Node3D
 var touching_water = true
 var firing = false
 var target = null
-var reload_duration = 0.2
+var reload_duration = 0.6
 var reload_time = 0.0
 
 
