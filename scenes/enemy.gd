@@ -1,14 +1,17 @@
 extends PathFollow3D
 
 
+@export var sound: AudioStreamPlayer3D = null
 @export var run_duration : float = 25.0
 @export var health : int = 10
 var wave_idx = 0
 
 
-# Called when the node enters the scene tree for the first time.
+@onready var sound_timer: Timer = $Timer
+
+
 func _ready() -> void:
-	pass # Replace with function body.
+	sound_timer.wait_time = randf_range(3.0, 5.0)
 
 
 func _process(delta: float) -> void:
@@ -42,3 +45,10 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.get_parent().is_in_group("Projectiles"):
 		area.get_parent().queue_free()
 		take_damage()
+
+
+func _on_timer_timeout() -> void:
+	if sound:
+		sound.play()
+		sound_timer.wait_time = randf_range(3.0, 5.0)
+	

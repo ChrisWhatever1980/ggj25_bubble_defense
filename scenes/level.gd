@@ -71,7 +71,17 @@ func on_enemy_destroyed(_wave_idx):
 
 func _on_timer_timeout() -> void:
 	if current_wave_amount > 0:
-		var new_enemy = preload("res://scenes/enemy_2.tscn").instantiate()
+		var new_enemy = null
+		match current_wave_enemy:
+			Globals.EnemyType.SimpleBoat:
+				new_enemy = preload("res://scenes/enemy.tscn").instantiate()
+			Globals.EnemyType.RubberDuck:
+				new_enemy = preload("res://scenes/enemy_2.tscn").instantiate()
+			Globals.EnemyType.Squid:
+				new_enemy = preload("res://scenes/enemy_3.tscn").instantiate()
+			Globals.EnemyType.Turd:
+				new_enemy = preload("res://scenes/enemy_4.tscn").instantiate()
+
 		paths.pick_random().add_child(new_enemy)
 		current_wave_amount -= 1
 		if current_wave_amount <= 0:

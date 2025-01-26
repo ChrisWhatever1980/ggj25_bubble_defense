@@ -23,4 +23,6 @@ func explode() -> void:
 	new_bath_bomb_bubbles.position = self.position
 	get_parent().add_child(new_bath_bomb_bubbles)
 
+	GameEvents.change_water_color.emit()
+
 	queue_free()

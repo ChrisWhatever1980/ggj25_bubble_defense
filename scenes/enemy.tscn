@@ -1,18 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvrqp6u4lxw61"]
+[gd_scene load_steps=6 format=3 uid="uid://dvrqp6u4lxw61"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_dyfqr"]
 [ext_resource type="PackedScene" uid="uid://b5x4phmjwc8sn" path="res://models/boat.glb" id="1_i64mb"]
 [ext_resource type="PackedScene" uid="uid://c4lvtn5i4ic31" path="res://scenes/soapy_smokey.tscn" id="3_5d46j"]
+[ext_resource type="AudioStream" uid="uid://5ctnvyq1b5o5" path="res://audio/rubber_duck.wav" id="4_gdqdh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0cjar"]
 radius = 0.128052
 
-[node name="Enemy" type="PathFollow3D" groups=["Enemies"]]
+[node name="Enemy" type="PathFollow3D" node_paths=PackedStringArray("sound") groups=["Enemies"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 use_model_front = true
 loop = false
 tilt_enabled = false
 script = ExtResource("1_dyfqr")
+sound = NodePath("HornSound")
 
 [node name="boat" parent="." instance=ExtResource("1_i64mb")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 6.20177e-11, 0, -0.0014188)
@@ -26,5 +28,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20177e-11, 0, -0.0014188)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0448969, 0)
 shape = SubResource("SphereShape3D_0cjar")
+
+[node name="HornSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_gdqdh")
+attenuation_model = 3
+max_polyphony = 5
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

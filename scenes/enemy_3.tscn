@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://37t5o1564bae"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_six0e"]
+[ext_resource type="PackedScene" uid="uid://8e1r1lu86nqw" path="res://models/squid.glb" id="3_6ir6k"]
+[ext_resource type="AudioStream" uid="uid://s6l40hjyiogq" path="res://audio/roar.wav" id="3_436tt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rjh18"]
+radius = 0.173011
+
+[node name="Enemy3" type="PathFollow3D" node_paths=PackedStringArray("sound") groups=["Enemies"]]
+script = ExtResource("1_six0e")
+sound = NodePath("RoarSound")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0965046, 0)
+shape = SubResource("SphereShape3D_rjh18")
+
+[node name="squid" parent="." instance=ExtResource("3_6ir6k")]
+transform = Transform3D(-0.05, 0, 4.37114e-09, 0, 0.05, 0, -4.37114e-09, 0, -0.05, 0, 0, 0)
+
+[node name="Skeleton3D" parent="squid/SquidArmature" index="0"]
+bones/0/rotation = Quaternion(-0.496338, 0.0132656, 0.234393, 0.835783)
+bones/1/rotation = Quaternion(-0.0135679, -0.00362998, -0.0592646, 0.998143)
+bones/3/rotation = Quaternion(0.439217, -0.0278431, -0.0231376, 0.897651)
+bones/4/rotation = Quaternion(-0.437846, -0.351165, -0.331032, 0.758546)
+bones/5/rotation = Quaternion(0.0780394, 0.00863505, -0.0462066, 0.995842)
+bones/6/rotation = Quaternion(-0.171568, -0.526362, -0.548408, 0.626703)
+bones/7/rotation = Quaternion(0.351719, 0.0381786, 0.252826, 0.900508)
+bones/8/rotation = Quaternion(0.113599, -0.654897, -0.537016, 0.519441)
+bones/9/rotation = Quaternion(0.0744221, 0.0246239, 0.0220568, 0.996679)
+bones/10/rotation = Quaternion(-0.396831, 0.762884, 0.377869, -0.343145)
+bones/11/rotation = Quaternion(0.151298, -0.0042526, 0.421937, 0.893902)
+bones/12/rotation = Quaternion(-0.521866, 0.812609, 0.170139, -0.195895)
+bones/13/rotation = Quaternion(0.074396, 0.0428325, 0.0675181, 0.994018)
+bones/14/rotation = Quaternion(-0.52316, 0.835758, -0.166118, 0.0147436)
+bones/15/rotation = Quaternion(-0.0389356, -0.00872576, 0.30881, 0.950286)
+
+[node name="AnimationPlayer" parent="squid" index="4"]
+autoplay = "SquidArmsFlailing"
+
+[node name="RoarSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_436tt")
+max_polyphony = 5
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="squid"]
