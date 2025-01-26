@@ -43,8 +43,8 @@ func _physics_process(_delta):
 
 func _input(event: InputEvent) -> void:
 
-	if event is InputEventMouseButton and event.is_pressed():
-		if targeted_object:
+	if event is InputEventMouseButton and event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT:
+		if is_instance_valid(targeted_object):
 			if targeted_object.is_in_group("TowerBubbles"):
 				targeted_object.pop()
 				targeted_object = null
