@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://erttc2jss7up"]
+[gd_scene load_steps=5 format=3 uid="uid://erttc2jss7up"]
 
 [ext_resource type="Script" path="res://scenes/ui/turret_selection.gd" id="1_33spo"]
 [ext_resource type="PackedScene" uid="uid://2l0x32turlsl" path="res://scenes/ui/turret_option.tscn" id="1_cadga"]
 [ext_resource type="PackedScene" uid="uid://b7yaxplr7mn6m" path="res://scenes/ui/turret_option_2.tscn" id="3_nwlbq"]
+[ext_resource type="PackedScene" uid="uid://cd767msvs0m84" path="res://scenes/ui/turret_option_3.tscn" id="4_0bhpf"]
 
 [node name="TurretSelection" type="Control"]
 layout_mode = 3
@@ -15,18 +16,67 @@ script = ExtResource("1_33spo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-offset_left = -42.0
-offset_top = 59.0
-offset_right = 145.0
-offset_bottom = 351.0
+offset_top = 20.0
+offset_right = 187.0
+offset_bottom = 387.0
 theme_override_constants/separation = 0
 
-[node name="TurretOption" parent="VBoxContainer" instance=ExtResource("1_cadga")]
+[node name="Control" type="Control" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TurretOption" parent="VBoxContainer/Control" instance=ExtResource("1_cadga")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TurretOption2" parent="VBoxContainer" instance=ExtResource("3_nwlbq")]
+[node name="Control2" type="Control" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TurretOption2" parent="VBoxContainer/Control2" instance=ExtResource("3_nwlbq")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="Control3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TurretOption3" parent="VBoxContainer/Control3" instance=ExtResource("4_0bhpf")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6

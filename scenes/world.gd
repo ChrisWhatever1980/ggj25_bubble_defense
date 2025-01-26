@@ -29,20 +29,10 @@ func _process(_delta: float) -> void:
 		animation_player.play("LegWipping")
 
 	if Input.is_action_just_pressed("spawn_tower_bubble"):
-		spawn_bath_bomb()
+		spawn_tower()
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-
-
-func spawn_bath_bomb():
-	var new_bomb = turrets[Globals.TurretType.Bomb].instantiate()
-	new_bomb.position = camera_3d.global_position
-	new_bomb.position.y -= 0.1
-
-	new_bomb.direction = -camera_3d.global_basis.z
-
-	add_child(new_bomb)
 
 
 func spawn_tower():

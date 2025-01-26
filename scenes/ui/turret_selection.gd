@@ -25,5 +25,5 @@ func update_selected_turret() -> void:
 	GameEvents.select_turret.emit(selected_turret)
 	var i = 0;
 	for turret_option in container.get_children():
-		turret_option.selected = i == selected_turret
+		turret_option.get_child(0).selected = i == selected_turret
 		i += 1
