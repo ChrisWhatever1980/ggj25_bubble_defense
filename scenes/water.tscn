@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://2yu6c20k7w34"]
+[gd_scene load_steps=7 format=4 uid="uid://2yu6c20k7w34"]
 
 [ext_resource type="Material" uid="uid://q8f0fdx44u02" path="res://scenes/water_material.tres" id="1_q4oit"]
+[ext_resource type="Script" path="res://scenes/water.gd" id="1_q8svu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo53o"]
 resource_name = "WaterMaterial"
@@ -44,6 +45,7 @@ shadow_mesh = SubResource("ArrayMesh_6pkj8")
 size = Vector3(3.89148, 0.230591, 1.83069)
 
 [node name="Water" type="Node3D"]
+script = ExtResource("1_q8svu")
 
 [node name="water" type="Node3D" parent="."]
 

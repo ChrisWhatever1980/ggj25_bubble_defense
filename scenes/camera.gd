@@ -5,6 +5,8 @@ const ray_length = 10000
 
 
 @onready var camera: Camera3D = $Camera3D
+@onready var music_player: Node = $"../MusicPlayer"
+@onready var coffee_table: Node3D = $"../bathroom/CoffeeTable"
 
 
 var mouse_sensitivity = 0.001
@@ -33,6 +35,7 @@ func _physics_process(_delta):
 	var object_result = space_state.intersect_ray(ray_query_params)
 	if object_result:
 		var target_name = object_result.collider.get_parent().name
+		#print("Hit: " + target_name)
 		if target_name == "water_model":
 			targeted_object = null
 		else:
@@ -43,14 +46,22 @@ func _physics_process(_delta):
 
 func _input(event: InputEvent) -> void:
 
-	if event is InputEventMouseButton and event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT:
-		if is_instance_valid(targeted_object):
-			if targeted_object.is_in_group("TowerBubbles"):
-				targeted_object.pop()
-				targeted_object = null
-			elif targeted_object.is_in_group("Fishes"):
-				targeted_object.pop()
-				targeted_object = null
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if is_instance_valid(targeted_object):
+				if targeted_object.is_in_group("TowerBubbles"):
+					targeted_object.pop()
+					targeted_object = null
+				elif targeted_object.is_in_group("Fishes"):
+					targeted_object.pop()
+					targeted_object = null
+				elif targeted_object.is_in_group("MusicPlayer"):
+					music_player.next_song()
+				elif targeted_object.is_in_group("Candles"):
+					coffee_table.toggle_candles()
+
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			GameEvents.spawn_tower.emit()
 
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3lfmkysltc3c"]
+
+[ext_resource type="Shader" path="res://soap_bubble.gdshader" id="1_akiji"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88prh"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(2, 0, 2)
+spread = 180.0
+initial_velocity_min = 0.2
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+damping_min = 0.5
+damping_max = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p15jy"]
+load_path = "res://.godot/imported/soap_bubble_color.png-93c986f179eecfeb5918cf44e28bfea5.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4nuqg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p1cqy"]
+seamless = true
+noise = SubResource("FastNoiseLite_4nuqg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_re1pk"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_akiji")
+shader_parameter/bubble_size = 0.1
+shader_parameter/smoothness = 0.05
+shader_parameter/dissolve = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_p1cqy")
+shader_parameter/color_texture = SubResource("CompressedTexture2D_p15jy")
+
+[sub_resource type="SphereMesh" id="SphereMesh_m3ikq"]
+material = SubResource("ShaderMaterial_re1pk")
+radius = 0.05
+height = 0.1
+
+[node name="StreamBubbles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000972182, 0)
+amount = 150
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_88prh")
+draw_pass_1 = SubResource("SphereMesh_m3ikq")

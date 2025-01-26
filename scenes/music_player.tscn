@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfyxl0ekwbhd"]
+
+[ext_resource type="Script" path="res://scenes/music_player.gd" id="1_q6yp0"]
+[ext_resource type="AudioStream" uid="uid://bhe67bjdu0dk4" path="res://audio/music/chill.mp3" id="2_adhyk"]
+[ext_resource type="AudioStream" uid="uid://cw2m11y0bgwip" path="res://audio/music/jazz.mp3" id="3_oknkj"]
+[ext_resource type="AudioStream" uid="uid://jlv574xh3hdh" path="res://audio/music/techno.mp3" id="4_lhpu8"]
+[ext_resource type="AudioStream" uid="uid://bxu2s2ovj1lcc" path="res://audio/music/creepy.mp3" id="5_k7w4s"]
+
+[node name="MusicPlayer" type="Node"]
+script = ExtResource("1_q6yp0")
+
+[node name="ChillMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_adhyk")
+bus = &"Music"
+
+[node name="JazzMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_oknkj")
+bus = &"Music"
+
+[node name="TechnoMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lhpu8")
+bus = &"Music"
+
+[node name="CreepyMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_k7w4s")
+bus = &"Music"
+
+[connection signal="finished" from="ChillMusic" to="." method="_on_song_finished"]
+[connection signal="finished" from="JazzMusic" to="." method="_on_song_finished"]
+[connection signal="finished" from="TechnoMusic" to="." method="_on_song_finished"]
+[connection signal="finished" from="CreepyMusic" to="." method="_on_song_finished"]

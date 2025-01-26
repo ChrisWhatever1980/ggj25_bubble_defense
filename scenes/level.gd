@@ -4,11 +4,15 @@ extends Node3D
 @onready var spawn_enemy_timer: Timer = $SpawnEnemyTimer
 
 
+@export var level_idx : int = -1
+
+
 var paths = []
 var current_wave_idx : int = 0
 var current_wave_amount : int = 5
 var current_wave_enemy : Globals.EnemyType = Globals.EnemyType.SimpleBoat
 var enemies_left : int = 0
+var first_enemy_destroyed = false
 
 
 @export var waves = [
@@ -43,6 +47,12 @@ func new_wave(idx):
 
 
 func on_enemy_destroyed(_wave_idx):
+	if not first_enemy_destroyed:
+		first_enemy_destroyed = true
+		GameEvents.show_message.emit("Quick! Click the fishes before they fly away!", 4.0)
+		await get_tree().create_timer(4.0).timeout
+		GameEvents.show_message.emit("Spend fishes to build more towers!", 3.0)
+
 	enemies_left -= 1
 
 	GameEvents.wave_info_update.emit(current_wave_idx, enemies_left, waves[current_wave_idx].EnemyCount)
@@ -54,7 +64,7 @@ func on_enemy_destroyed(_wave_idx):
 		if current_wave_idx + 1 == waves.size():
 			# all waves defeated, level completed
 			#print("Level completed")
-			GameEvents.level_completed.emit()
+			GameEvents.level_completed.emit(level_idx)
 		else:
 			new_wave(current_wave_idx + 1)
 

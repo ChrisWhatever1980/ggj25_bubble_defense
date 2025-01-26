@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://p4bn5mw1xcb"]
+[gd_scene load_steps=22 format=3 uid="uid://p4bn5mw1xcb"]
 
-[ext_resource type="Material" uid="uid://dcmhfrwokafpw" path="res://scenes/soap_bubble_material.tres" id="1_pvw3w"]
 [ext_resource type="Script" path="res://scenes/soap_bubble.gd" id="1_y707r"]
+[ext_resource type="Shader" path="res://soap_bubble.gdshader" id="2_ajvcc"]
 [ext_resource type="AudioStream" uid="uid://kyknaqapebpb" path="res://audio/244655__greenvwbeetle__pop-1.wav" id="3_driy6"]
 [ext_resource type="AudioStream" uid="uid://bswxpxwljvfp" path="res://audio/244654__greenvwbeetle__pop-2.wav" id="4_tvnxi"]
 [ext_resource type="AudioStream" uid="uid://dw27r5sps22u2" path="res://audio/244653__greenvwbeetle__pop-3.wav" id="5_vms48"]
@@ -10,6 +10,25 @@
 [ext_resource type="AudioStream" uid="uid://5c63hmlf2w3i" path="res://audio/244656__greenvwbeetle__pop-6.wav" id="8_a34cw"]
 [ext_resource type="AudioStream" uid="uid://dun7d2masheod" path="res://audio/328118__greenvwbeetle__pop-7.wav" id="9_u0xyn"]
 [ext_resource type="AudioStream" uid="uid://d33b0u258mvon" path="res://audio/328117__greenvwbeetle__pop-8.wav" id="10_toy0q"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4poj7"]
+load_path = "res://.godot/imported/soap_bubble_color.png-93c986f179eecfeb5918cf44e28bfea5.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fa5hh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_avkdv"]
+seamless = true
+noise = SubResource("FastNoiseLite_fa5hh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knoba"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_ajvcc")
+shader_parameter/bubble_size = 0.1
+shader_parameter/smoothness = 0.05
+shader_parameter/dissolve = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_avkdv")
+shader_parameter/color_texture = SubResource("CompressedTexture2D_4poj7")
 
 [sub_resource type="SphereMesh" id="SphereMesh_duikt"]
 
@@ -157,7 +176,7 @@ stream_7/stream = ExtResource("10_toy0q")
 script = ExtResource("1_y707r")
 
 [node name="Bubble" type="MeshInstance3D" parent="."]
-material_override = ExtResource("1_pvw3w")
+material_override = SubResource("ShaderMaterial_knoba")
 mesh = SubResource("SphereMesh_duikt")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]

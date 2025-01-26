@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://rh4trif6ubww"]
+[gd_scene load_steps=57 format=4 uid="uid://rh4trif6ubww"]
 
 [ext_resource type="Texture2D" uid="uid://cg0iqgmbw4sbl" path="res://models/coffee_table_rubix48-1x.png" id="1_crvnu"]
 [ext_resource type="Script" path="res://scenes/coffee_table.gd" id="1_kv8ev"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dnvwg8chbplje" path="res://models/coffee_table_vintage-album-cover-alcohol-3.jpg" id="5_kqwb6"]
 [ext_resource type="Texture2D" uid="uid://deyc150j4xs1" path="res://models/coffee_table_d782f734daee3d73e7c4c72f189a0844.jpg" id="6_5g7i2"]
 [ext_resource type="Texture2D" uid="uid://cvq3kc636w532" path="res://models/coffee_table_wood.jpg" id="7_38ki4"]
+[ext_resource type="Texture2D" uid="uid://d4dvusybvhe1h" path="res://addons/kenney_particle_pack/muzzle_04.png" id="9_xvyob"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cheyr"]
 resource_name = "CandleMaterial"
@@ -322,6 +323,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g34t2")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3homl"]
+size = Vector3(2.36322, 27.8807, 2.26996)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_o3pkn"]
 _surfaces = [{
 "aabb": AABB(-1, -1.68351, -1, 9.70254, 3.32844, 2),
@@ -540,6 +544,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nowa5")
 
+[sub_resource type="Animation" id="Animation_814f3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LongPlayDisc:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_0gn0n"]
 resource_name = "lp_animation"
 length = 2.0
@@ -557,26 +576,41 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_814f3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LongPlayDisc:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75bu3"]
 _data = {
 "RESET": SubResource("Animation_814f3"),
 "lp_animation": SubResource("Animation_0gn0n")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0x38"]
+transparency = 1
+albedo_texture = ExtResource("9_xvyob")
+emission_enabled = true
+emission = Color(0.703808, 0.703808, 0.703808, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_pt0dk"]
+material = SubResource("StandardMaterial3D_s0x38")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xvbj8"]
+material = SubResource("StandardMaterial3D_s0x38")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="QuadMesh" id="QuadMesh_brxkl"]
+material = SubResource("StandardMaterial3D_s0x38")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0jsju"]
+material = SubResource("StandardMaterial3D_s0x38")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_f0soj"]
+material = SubResource("StandardMaterial3D_s0x38")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_btrjf"]
+size = Vector3(1, 0.747589, 0.834045)
 
 [node name="CoffeeTable" type="Node3D"]
 script = ExtResource("1_kv8ev")
@@ -613,10 +647,16 @@ transform = Transform3D(-0.351474, -0.000238569, -0.22683, -0.00321169, -0.00926
 mesh = SubResource("ArrayMesh_56q5d")
 skeleton = NodePath("")
 
-[node name="LongPlayDisc" type="MeshInstance3D" parent="coffee_table"]
+[node name="LongPlayDisc" type="MeshInstance3D" parent="coffee_table" groups=["MusicPlayer"]]
 transform = Transform3D(0.371993, 0, 0, 0, 0.0146398, 0, 0, 0, 0.371993, -5.39675, 1.53236, 2.91893)
 mesh = SubResource("ArrayMesh_vs5sp")
 skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="coffee_table/LongPlayDisc"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="coffee_table/LongPlayDisc/Area3D"]
+transform = Transform3D(1.00003, 0, 0, 0, 1.00004, 0, 0, 0, 1.00003, -0.00106907, -0.736351, 0.0045476)
+shape = SubResource("BoxShape3D_3homl")
 
 [node name="Cube_004" type="MeshInstance3D" parent="coffee_table"]
 transform = Transform3D(0.0399538, 0, 0.0198572, 0, 0.0446163, 0, -0.0198572, 0, 0.0399538, -5.71019, 1.51877, 3.25131)
@@ -648,35 +688,68 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31957, 0, 2.57129)
 mesh = SubResource("ArrayMesh_vo1aa")
 skeleton = NodePath("")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="coffee_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31527, 1.64684, 2.21398)
-light_color = Color(1, 0.649014, 0.525506, 1)
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="coffee_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26225, 1.55901, 1.94675)
-light_color = Color(1, 0.649014, 0.525506, 1)
-light_energy = 0.8
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="coffee_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35003, 1.49158, 1.76548)
-light_color = Color(1, 0.649014, 0.525506, 1)
-light_energy = 0.6
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="coffee_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15589, 1.44873, 1.78222)
-light_color = Color(1, 0.649014, 0.525506, 1)
-light_energy = 0.4
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="coffee_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.12459, 1.51781, 2.03275)
-light_color = Color(1, 0.649014, 0.525506, 1)
-light_energy = 0.2
-
 [node name="LpAnimationPlayer" type="AnimationPlayer" parent="coffee_table"]
 libraries = {
 "": SubResource("AnimationLibrary_75bu3")
 }
 autoplay = "lp_animation"
+
+[node name="Candles" type="Node3D" parent="coffee_table" groups=["Candles"]]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="coffee_table/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31527, 1.64684, 2.21398)
+light_color = Color(1, 0.649014, 0.525506, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="coffee_table/Candles/OmniLight3D"]
+transform = Transform3D(0.357749, 0, -0.933818, 0, 1, 0, 0.933818, 0, 0.357749, 0, 0.118042, 0)
+mesh = SubResource("QuadMesh_pt0dk")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="coffee_table/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26225, 1.55901, 1.94675)
+light_color = Color(1, 0.649014, 0.525506, 1)
+light_energy = 0.8
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="coffee_table/Candles/OmniLight3D2"]
+transform = Transform3D(0.357749, 0, -0.933818, 0, 1, 0, 0.933818, 0, 0.357749, 0, 0.071106, 0)
+mesh = SubResource("QuadMesh_xvbj8")
+skeleton = NodePath("../../OmniLight3D")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="coffee_table/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35003, 1.49158, 1.76548)
+light_color = Color(1, 0.649014, 0.525506, 1)
+light_energy = 0.6
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="coffee_table/Candles/OmniLight3D3"]
+transform = Transform3D(0.357749, 0, -0.933818, 0, 1, 0, 0.933818, 0, 0.357749, 0, 0.0761108, 0)
+mesh = SubResource("QuadMesh_brxkl")
+skeleton = NodePath("../../OmniLight3D")
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="coffee_table/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15589, 1.44873, 1.78222)
+light_color = Color(1, 0.649014, 0.525506, 1)
+light_energy = 0.4
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="coffee_table/Candles/OmniLight3D4"]
+transform = Transform3D(0.357749, 0, -0.933818, 0, 1, 0, 0.933818, 0, 0.357749, 0, 0.0223999, 0.0132446)
+mesh = SubResource("QuadMesh_0jsju")
+skeleton = NodePath("../../OmniLight3D")
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="coffee_table/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.12459, 1.51781, 2.03275)
+light_color = Color(1, 0.649014, 0.525506, 1)
+light_energy = 0.2
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="coffee_table/Candles/OmniLight3D5"]
+transform = Transform3D(0.357749, 0, -0.933818, 0, 1, 0, 0.933818, 0, 0.357749, 0, 0.0205688, 0)
+mesh = SubResource("QuadMesh_f0soj")
+skeleton = NodePath("../../OmniLight3D")
+
+[node name="Area3D" type="Area3D" parent="coffee_table/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2755, 1.50726, 1.99732)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="coffee_table/Candles/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05159, 0.0186462)
+shape = SubResource("BoxShape3D_btrjf")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-2.75855e-08, -0.775716, 0.631082, -3.39076e-08, 0.631082, 0.775716, -1, 1.77636e-15, -4.37114e-08, -1.90933, 4.24097, 2.75304)

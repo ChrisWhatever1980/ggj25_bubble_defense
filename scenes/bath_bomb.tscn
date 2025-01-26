@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpdmavokvsxso"]
+
+[ext_resource type="Script" path="res://scenes/bath_bomb.gd" id="1_fk7sk"]
+[ext_resource type="Shader" path="res://bath_bomb.gdshader" id="2_xq7as"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xkw0m"]
+load_path = "res://.godot/imported/soap_bubble_color.png-93c986f179eecfeb5918cf44e28bfea5.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s3w35"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vtlna"]
+seamless = true
+noise = SubResource("FastNoiseLite_s3w35")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_plutl"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_xq7as")
+shader_parameter/bubble_size = 0.1
+shader_parameter/smoothness = 0.05
+shader_parameter/dissolve = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_vtlna")
+shader_parameter/color_texture = SubResource("CompressedTexture2D_xkw0m")
+
+[sub_resource type="SphereMesh" id="SphereMesh_duikt"]
+radius = 0.25
+height = 0.5
+
+[node name="BathBomb" type="Node3D"]
+script = ExtResource("1_fk7sk")
+
+[node name="Bomb" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_plutl")
+mesh = SubResource("SphereMesh_duikt")

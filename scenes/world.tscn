@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://c3r3fe7mvw786"]
+[gd_scene load_steps=33 format=3 uid="uid://c3r3fe7mvw786"]
 
 [ext_resource type="PackedScene" uid="uid://dedqvre2ne1bi" path="res://models/world.glb" id="1_13brs"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_hy3ga"]
 [ext_resource type="PackedScene" uid="uid://hph2m1xcye3" path="res://scenes/test_level.tscn" id="2_hpliu"]
-[ext_resource type="Material" uid="uid://dcmhfrwokafpw" path="res://scenes/soap_bubble_material.tres" id="3_pay01"]
+[ext_resource type="PackedScene" uid="uid://b3lfmkysltc3c" path="res://scenes/stream_bubbles.tscn" id="3_wsvsc"]
 [ext_resource type="PackedScene" uid="uid://2yu6c20k7w34" path="res://scenes/water.tscn" id="4_4tp3j"]
 [ext_resource type="PackedScene" uid="uid://dqb3e7ahmx8ux" path="res://models/body.glb" id="4_566e5"]
 [ext_resource type="PackedScene" uid="uid://dntkrqr4tpjph" path="res://models/castle.glb" id="5_jsxgy"]
@@ -14,8 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bsq5cwdtixaro" path="res://scenes/ui/main.tscn" id="9_c7xgw"]
 [ext_resource type="PackedScene" uid="uid://cag3j05aofoih" path="res://scenes/ui/settings.tscn" id="10_vcr3a"]
 [ext_resource type="PackedScene" uid="uid://d3bbogsnqtqnh" path="res://scenes/ui/game.tscn" id="11_keo3p"]
+[ext_resource type="Texture2D" uid="uid://dnfsnxa1qqico" path="res://textures/night_sky.jpg" id="12_v0lpu"]
 [ext_resource type="PackedScene" uid="uid://b7c1u4kp7yxj1" path="res://scenes/tree.tscn" id="13_j22yb"]
 [ext_resource type="PackedScene" uid="uid://b2a21clltbf50" path="res://scenes/ui/level_selection.tscn" id="14_bi2qc"]
+[ext_resource type="PackedScene" uid="uid://bfyxl0ekwbhd" path="res://scenes/music_player.tscn" id="17_gudyy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71dfa"]
 emission_enabled = true
@@ -26,22 +28,6 @@ material = SubResource("StandardMaterial3D_71dfa")
 top_radius = 0.05
 bottom_radius = 0.05
 height = 0.6
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ic6tu"]
-emission_shape = 1
-emission_sphere_radius = 0.2
-direction = Vector3(2, 0, 2)
-spread = 180.0
-initial_velocity_min = 0.2
-initial_velocity_max = 0.4
-gravity = Vector3(0, 1, 0)
-damping_min = 1.5
-damping_max = 1.5
-
-[sub_resource type="SphereMesh" id="SphereMesh_ilp4n"]
-material = ExtResource("3_pay01")
-radius = 0.05
-height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcqek"]
 transparency = 1
@@ -54,6 +40,52 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_xoyha"]
 material = SubResource("StandardMaterial3D_xcqek")
 size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4p7a"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.481789, 0.481789, 0.481789, 1)
+albedo_texture = ExtResource("12_v0lpu")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mu4k8"]
+material = SubResource("StandardMaterial3D_b4p7a")
+size = Vector2(100, 100)
+
+[sub_resource type="Animation" id="Animation_og0x1"]
+resource_name = "sky_rotate_animation"
+length = 360.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 360)
+}
+
+[sub_resource type="Animation" id="Animation_w1mtq"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqfl0"]
+_data = {
+"RESET": SubResource("Animation_w1mtq"),
+"sky_rotate_animation": SubResource("Animation_og0x1")
+}
 
 [sub_resource type="Environment" id="Environment_lrxqk"]
 background_mode = 1
@@ -155,7 +187,7 @@ script = ExtResource("1_hy3ga")
 
 [node name="bathroom" parent="." instance=ExtResource("1_13brs")]
 
-[node name="BathroomWindows" parent="bathroom" index="3"]
+[node name="BathroomWindows" parent="bathroom" index="2"]
 cast_shadow = 0
 
 [node name="Stream" type="Node3D" parent="bathroom"]
@@ -165,12 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8058, 1.58042, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.297918, 0)
 mesh = SubResource("CylinderMesh_dpc04")
 
-[node name="StreamBubbles" type="GPUParticles3D" parent="bathroom/Stream/Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.309172, 0)
-amount = 50
-lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_ic6tu")
-draw_pass_1 = SubResource("SphereMesh_ilp4n")
+[node name="StreamBubbles" parent="bathroom/Stream/Water" instance=ExtResource("3_wsvsc")]
 
 [node name="body" parent="bathroom" instance=ExtResource("4_566e5")]
 
@@ -194,6 +221,7 @@ shadow_opacity = 0.84
 
 [node name="Level" parent="LevelWrapper" instance=ExtResource("2_hpliu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975509, 0)
+level_idx = 0
 
 [node name="Water" parent="." instance=ExtResource("4_4tp3j")]
 
@@ -208,6 +236,16 @@ fov = 58.9
 [node name="Moon" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.497, 10.8277, -7.75001)
 mesh = SubResource("QuadMesh_xoyha")
+
+[node name="NightSky" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -51.0312, -11.48, -9.24232)
+mesh = SubResource("QuadMesh_mu4k8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NightSky"]
+libraries = {
+"": SubResource("AnimationLibrary_dqfl0")
+}
+autoplay = "sky_rotate_animation"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lrxqk")
@@ -259,6 +297,8 @@ layout_mode = 1
 
 [node name="Tree" parent="." instance=ExtResource("13_j22yb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1339, -4.40373, -3.30078)
+
+[node name="MusicPlayer" parent="." instance=ExtResource("17_gudyy")]
 
 [connection signal="timeout" from="bathroom/body/WiggleTimer" to="." method="_on_wiggle_timer_timeout"]
 

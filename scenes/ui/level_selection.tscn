@@ -36,11 +36,19 @@ columns = 3
 [node name="Lv1" parent="MarginContainer/CenterContainer/GridContainer" instance=ExtResource("1_d7cgp")]
 layout_mode = 2
 
+[node name="TextureButton" parent="MarginContainer/CenterContainer/GridContainer/Lv1/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
+
 [node name="Label" parent="MarginContainer/CenterContainer/GridContainer/Lv1/Panel/TextureButton" index="0"]
 text = "Level 1"
 
 [node name="Lv2" parent="MarginContainer/CenterContainer/GridContainer" instance=ExtResource("1_d7cgp")]
 layout_mode = 2
+
+[node name="TextureButton" parent="MarginContainer/CenterContainer/GridContainer/Lv2/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
 
 [node name="Label" parent="MarginContainer/CenterContainer/GridContainer/Lv2/Panel/TextureButton" index="0"]
 text = "Level 2"
@@ -48,11 +56,19 @@ text = "Level 2"
 [node name="Lv3" parent="MarginContainer/CenterContainer/GridContainer" instance=ExtResource("1_d7cgp")]
 layout_mode = 2
 
+[node name="TextureButton" parent="MarginContainer/CenterContainer/GridContainer/Lv3/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
+
 [node name="Label" parent="MarginContainer/CenterContainer/GridContainer/Lv3/Panel/TextureButton" index="0"]
 text = "Level 3"
 
 [node name="Lv4" parent="MarginContainer/CenterContainer/GridContainer" instance=ExtResource("1_d7cgp")]
 layout_mode = 2
+
+[node name="TextureButton" parent="MarginContainer/CenterContainer/GridContainer/Lv4/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
 
 [node name="Label" parent="MarginContainer/CenterContainer/GridContainer/Lv4/Panel/TextureButton" index="0"]
 text = "Level 4"
@@ -63,6 +79,8 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="TextureButton" parent="MarginContainer/BubbleButton/Panel" index="0"]
+offset_left = 70.0
+offset_right = 70.0
 bubble_padding = 10.0
 
 [node name="Label" parent="MarginContainer/BubbleButton/Panel/TextureButton" index="0"]
