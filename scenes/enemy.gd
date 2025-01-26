@@ -2,9 +2,7 @@ extends PathFollow3D
 
 
 @export var run_duration : float = 25.0
-
-
-var health = 10
+@export var health : int = 10
 var wave_idx = 0
 
 

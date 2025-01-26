@@ -7,7 +7,7 @@ var prev_self_modulate
 
 func _ready() -> void:
 	randomize()
-	set_bubble_size()	
+	set_bubble_size()
 	var offset : float = randf_range(0, anim.current_animation_length)
 	anim.advance(offset)
 	GameEvents.language_changed.connect(set_bubble_size)
@@ -16,6 +16,9 @@ func _ready() -> void:
 func set_bubble_size() -> void:
 	var labelSize = $"Label".get_size().x
 	var parent = get_parent_control()
+	#if ("text" in $"Label"):
+		#print("Updated " + $"Label".text)
+		#print("Size " + str(labelSize))
 	parent.set_custom_minimum_size(Vector2(labelSize + bubble_padding, labelSize + bubble_padding))
 
 

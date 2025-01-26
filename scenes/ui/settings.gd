@@ -16,9 +16,14 @@ var languages : Dictionary = {
 
 func _ready() -> void:
 	window_mode_control.select(window_mode_control.get_item_index(DisplayServer.window_get_mode()))
+	GameEvents.show_settings_menu.connect(show_settings_menu)
 	set_screen_size()
 	set_locale()
-	
+
+
+func show_settings_menu() -> void:
+	visible = true
+
 
 func set_locale() -> void:
 	var os_locale = OS.get_locale_language()
@@ -38,7 +43,7 @@ func set_screen_size() -> void:
 	for screen_size in screen_sizes:
 		resolution_control.add_item(screen_size, i)
 		if (screen_size_string == screen_size):
-			resolution_control.select(i)
+			resolution_control.select(resolution_control.get_item_index(i))
 		i += 1
 		
 	if (resolution_control.get_selected_id() == -1):
@@ -57,7 +62,17 @@ func _on_option_button_resolution_item_selected(index: int) -> void:
 
 func _on_option_button_language_item_selected(index: int) -> void:
 		TranslationServer.set_locale(languages.find_key(language_control.get_item_text(index)))
-		GameEvents.language_changed.emit()
+		var timer = Timer.new()
+		add_child(timer)
+		timer.one_shot = true
+		timer.wait_time = 0.1
+		timer.timeout.connect(emit_language_change_event)
+		timer.start()
+
+
+func emit_language_change_event() -> void:
+	#print("TIMER")
+	GameEvents.language_changed.emit()
 
 
 func get_resolution_vec_by_string(resolution_string: String) -> Vector2i:
@@ -67,3 +82,8 @@ func get_resolution_vec_by_string(resolution_string: String) -> Vector2i:
 
 func get_resolution_string_by_vec(resolution_vec: Vector2i) -> String:
 	return str(resolution_vec.x) + 'x' + str(resolution_vec.y)
+
+
+func _on_back_button_pressed() -> void:
+	visible = false
+	GameEvents.show_main_menu.emit()

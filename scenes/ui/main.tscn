@@ -15,13 +15,15 @@ script = ExtResource("1_ucle5")
 [node name="MarginContainer" type="MarginContainer" parent="."]
 clip_contents = true
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = -40.0
-offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -56,6 +58,8 @@ size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 20
 text = "QUIT"
 
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/SelectLevel/Panel/TextureButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Settings/Panel/TextureButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Quit/Panel/TextureButton" to="." method="_on_quit_texture_button_pressed"]
 
 [editable path="MarginContainer/CenterContainer/VBoxContainer/SelectLevel"]

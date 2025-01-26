@@ -8,3 +8,9 @@ enum EnemyType
 	Turd,
 	Boss
 }
+
+enum TurretType
+{
+	WindMill,
+	Catapult
+}

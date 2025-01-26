@@ -24,6 +24,10 @@ Globals="*res://globals/globals.gd"
 
 gdscript/warnings/unused_signal=0
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 spawn_tower_bubble={
