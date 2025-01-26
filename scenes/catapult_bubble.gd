@@ -28,6 +28,7 @@ func pop():
 	soap_bubble.pop()
 
 	var new_catapult = preload("res://scenes/catapult.tscn").instantiate()
+	new_catapult.add_to_group("IngameTowers")
 	new_catapult.position = self.position
 	new_catapult.touching_water = false
 	get_parent().add_child(new_catapult)

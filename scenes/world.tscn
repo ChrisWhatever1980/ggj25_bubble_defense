@@ -1,8 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://c3r3fe7mvw786"]
+[gd_scene load_steps=32 format=3 uid="uid://c3r3fe7mvw786"]
 
 [ext_resource type="PackedScene" uid="uid://dedqvre2ne1bi" path="res://models/world.glb" id="1_13brs"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_hy3ga"]
-[ext_resource type="PackedScene" uid="uid://hph2m1xcye3" path="res://scenes/test_level.tscn" id="2_hpliu"]
 [ext_resource type="PackedScene" uid="uid://b3lfmkysltc3c" path="res://scenes/stream_bubbles.tscn" id="3_wsvsc"]
 [ext_resource type="PackedScene" uid="uid://2yu6c20k7w34" path="res://scenes/water.tscn" id="4_4tp3j"]
 [ext_resource type="PackedScene" uid="uid://dqb3e7ahmx8ux" path="res://models/body.glb" id="4_566e5"]
@@ -206,7 +205,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="Castle" parent="bathroom" instance=ExtResource("5_yc415")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.16257, 1.04623, -0.0769365)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.163, 1, -0.077)
 
 [node name="CoffeeTable" parent="bathroom" instance=ExtResource("6_hkj0k")]
 
@@ -218,10 +217,7 @@ shadow_bias = 0.0
 shadow_opacity = 0.84
 
 [node name="LevelWrapper" type="Node3D" parent="."]
-
-[node name="Level" parent="LevelWrapper" instance=ExtResource("2_hpliu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975509, 0)
-level_idx = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97, 0)
 
 [node name="Water" parent="." instance=ExtResource("4_4tp3j")]
 

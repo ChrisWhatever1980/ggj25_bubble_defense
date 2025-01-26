@@ -28,6 +28,7 @@ func pop():
 	soap_bubble.pop()
 
 	var new_tower = preload("res://scenes/tower.tscn").instantiate()
+	new_tower.add_to_group("IngameTowers")
 	new_tower.position = self.position
 	new_tower.touching_water = false
 	get_parent().add_child(new_tower)

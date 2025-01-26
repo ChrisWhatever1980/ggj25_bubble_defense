@@ -13,6 +13,8 @@ extends Node3D
 @onready var wiggle_timer: Timer = $bathroom/body/WiggleTimer
 @onready var menu_camera: Camera3D = $MenuCamera
 @onready var tutorial_enabled: bool = true
+@onready var level_wrapper: Node3D = $LevelWrapper
+@onready var castle: Node3D = $bathroom/Castle
 
 
 func _ready() -> void:
@@ -54,9 +56,38 @@ func spawn_tower():
 
 
 func select_level(level_id: int) -> void:
+
+	# reset play area
+	
+	# delete level
+	if level_wrapper.get_child_count() > 0:
+		level_wrapper.get_child(0).queue_free()
+
+	# reset castle health
+	castle.reset_health()
+
+	# delete towers
+	var towers = get_tree().get_nodes_in_group("IngameTowers")
+	for t in towers:
+		t.queue_free()
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera_3d.current = true
-	$LevelWrapper.get_node('Level').new_wave(0)
+
+	var load_level = null
+	match level_id:
+		0:
+			load_level = preload("res://scenes/levels/level_1.tscn").instantiate()
+		1:
+			load_level = preload("res://scenes/levels/level_2.tscn").instantiate()
+		2:
+			load_level = preload("res://scenes/levels/level_3.tscn").instantiate()
+		3:
+			load_level = preload("res://scenes/levels/level_4.tscn").instantiate()
+
+	level_wrapper.add_child(load_level)
+	load_level.new_wave(0)
+
 	stream.visible = true
 	GameEvents.show_game_ui.emit()
 	

@@ -2,17 +2,13 @@ extends Node3D
 
 @onready var castle: Node3D = $castle
 
-var health : int = 20
+var health : int = 10
+var total_health = 10
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func reset_health():
+	health = total_health
+	castle.position.y = 0.0
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
@@ -23,7 +19,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 		area.get_parent().queue_free()
 
-		castle.position.y = lerpf(-3.0, 0.0, health / 20.0)
+		castle.position.y = lerpf(-3.0, 0.0, health / float(total_health))
 
 		if health <= 0:
 			# player looses

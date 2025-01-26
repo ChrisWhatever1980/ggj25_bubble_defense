@@ -28,6 +28,10 @@ gdscript/warnings/unused_signal=0
 
 window/stretch/mode="viewport"
 
+[global_group]
+
+IngameTowers=""
+
 [input]
 
 spawn_tower_bubble={

@@ -13,6 +13,7 @@ point_count = 17
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_swmqf")
+level_idx = 0
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_jns46")

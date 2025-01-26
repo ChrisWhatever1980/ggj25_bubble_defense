@@ -7,6 +7,7 @@ const ray_length = 10000
 @onready var camera: Camera3D = $Camera3D
 @onready var music_player: Node = $"../MusicPlayer"
 @onready var coffee_table: Node3D = $"../bathroom/CoffeeTable"
+@onready var castle_area_3d: Area3D = $"../bathroom/Castle/Area3D"
 
 
 var mouse_sensitivity = 0.001
@@ -27,7 +28,7 @@ func _physics_process(_delta):
 	# intersect with star
 	ray_query_params.from = from
 	ray_query_params.to = to
-	ray_query_params.exclude = [self]
+	ray_query_params.exclude = [self, castle_area_3d]
 	ray_query_params.collide_with_areas = true
 	ray_query_params.collide_with_bodies = false
 	ray_query_params.collision_mask = 0b00000000000000000001

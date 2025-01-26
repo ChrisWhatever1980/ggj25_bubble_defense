@@ -12,8 +12,8 @@ _data = {
 point_count = 17
 
 [node name="Level2" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.971619, 0)
 script = ExtResource("1_r4ik4")
+level_idx = 1
 waves = [{
 "EnemyCount": 8,
 "EnemyType": 0
