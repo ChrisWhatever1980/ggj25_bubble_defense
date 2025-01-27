@@ -21,8 +21,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta):
-	var from = camera.project_ray_origin(get_viewport().size / 2)
-	var to = from + camera.project_ray_normal(get_viewport().size / 2) * ray_length
+	var from = camera.project_ray_origin(get_viewport().get_visible_rect().size / 2)
+	var to = from + camera.project_ray_normal(get_viewport().get_visible_rect().size / 2) * ray_length
 	var space_state = get_world_3d().direct_space_state
 
 	# intersect with star
@@ -36,7 +36,7 @@ func _physics_process(_delta):
 	var object_result = space_state.intersect_ray(ray_query_params)
 	if object_result:
 		var target_name = object_result.collider.get_parent().name
-		#print("Hit: " + target_name)
+		print("Hit: " + target_name)
 		if target_name == "water_model":
 			targeted_object = null
 		else:
