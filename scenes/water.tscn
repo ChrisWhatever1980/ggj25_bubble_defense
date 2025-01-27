@@ -57,5 +57,5 @@ surface_material_override/0 = ExtResource("1_q4oit")
 [node name="Area3D" type="Area3D" parent="." groups=["Water"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00396729, 0.874964, 0.0022583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00396729, 0.906333, 0.0022583)
 shape = SubResource("BoxShape3D_uinte")

@@ -60,7 +60,7 @@ func load_level_info():
 		level_buttons[highest_level_completed + 1].visible = true
 
 
-func save_level_info(completed_level_idx):
+func save_level_info(completed_level_idx, win):
 	# Create new ConfigFile object.
 	var config = ConfigFile.new()
 

@@ -8,6 +8,8 @@
 radius = 0.1
 
 [node name="Enemy2" type="PathFollow3D" node_paths=PackedStringArray("sound") groups=["Enemies"]]
+loop = false
+tilt_enabled = false
 script = ExtResource("1_y4bo1")
 sound = NodePath("SqueakSound")
 

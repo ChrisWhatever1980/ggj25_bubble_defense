@@ -64,8 +64,9 @@ func on_enemy_destroyed(_wave_idx):
 		GameEvents.wave_defeated.emit(current_wave_idx)
 		if current_wave_idx + 1 == waves.size():
 			# all waves defeated, level completed
-			#print("Level completed")
-			GameEvents.level_completed.emit(level_idx)
+			print("Level completed")
+			await get_tree().create_timer(4.0).timeout
+			GameEvents.level_completed.emit(level_idx, true)
 		else:
 			new_wave(current_wave_idx + 1)
 
@@ -83,8 +84,8 @@ func on_enemy_finished():
 		#print("Wave defeated")
 		if current_wave_idx + 1 == waves.size():
 			# all waves defeated, level completed
-			#print("Level completed")
-			GameEvents.level_completed.emit(level_idx)
+			print("Level completed")
+			GameEvents.level_completed.emit(level_idx, true)
 		else:
 			new_wave(current_wave_idx + 1)
 

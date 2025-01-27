@@ -5,20 +5,22 @@
 [ext_resource type="AudioStream" uid="uid://s6l40hjyiogq" path="res://audio/roar.wav" id="3_436tt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rjh18"]
-radius = 0.173011
+radius = 0.117223
 
 [node name="Enemy3" type="PathFollow3D" node_paths=PackedStringArray("sound") groups=["Enemies"]]
+loop = false
+tilt_enabled = false
 script = ExtResource("1_six0e")
 sound = NodePath("RoarSound")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0965046, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0840273, 0)
 shape = SubResource("SphereShape3D_rjh18")
 
 [node name="squid" parent="." instance=ExtResource("3_6ir6k")]
-transform = Transform3D(-0.05, 0, 4.37114e-09, 0, 0.05, 0, -4.37114e-09, 0, -0.05, 0, 0, 0)
+transform = Transform3D(-0.03, 0, 4.52987e-09, 0, 0.03, 0, -4.52987e-09, 0, -0.03, 0, 0, 0)
 
 [node name="Skeleton3D" parent="squid/SquidArmature" index="0"]
 bones/0/rotation = Quaternion(-0.496338, 0.0132656, 0.234393, 0.835783)

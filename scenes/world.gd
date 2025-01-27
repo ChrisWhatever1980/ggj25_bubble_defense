@@ -22,8 +22,8 @@ func _ready() -> void:
 	GameEvents.select_level.connect(select_level)
 	GameEvents.select_turret.connect(select_turret)
 	GameEvents.spawn_tower.connect(spawn_tower)
-	GameEvents.level_completed.connect(return_to_menu.bind(true))
-	GameEvents.game_over.connect(return_to_menu.bind(false))
+	GameEvents.level_completed.connect(return_to_menu)
+	GameEvents.game_over.connect(return_to_menu)
 	GameEvents.toggle_tutorial.connect(toggle_tutorial)
 	GameEvents.toggle_particle_effects.connect(toggle_particles)
 
