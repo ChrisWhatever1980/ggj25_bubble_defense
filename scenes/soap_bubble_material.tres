@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dcmhfrwokafpw"]
 
 [ext_resource type="Shader" path="res://soap_bubble.gdshader" id="1_7dmnd"]
-[ext_resource type="Texture2D" uid="uid://b82d1qhs0rjdj" path="res://textures/soap_bubble_color.png" id="2_qtu4i"]
+[ext_resource type="Texture2D" uid="uid://x7v4d0v4hvxd" path="res://textures/soap_bubble_color.png" id="2_qtu4i"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tq27s"]
 

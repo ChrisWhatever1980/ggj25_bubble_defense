@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://scenes/soap_bubble.gd" id="1_y707r"]
 [ext_resource type="Shader" path="res://soap_bubble.gdshader" id="2_ajvcc"]
-[ext_resource type="AudioStream" uid="uid://kyknaqapebpb" path="res://audio/244655__greenvwbeetle__pop-1.wav" id="3_driy6"]
-[ext_resource type="AudioStream" uid="uid://bswxpxwljvfp" path="res://audio/244654__greenvwbeetle__pop-2.wav" id="4_tvnxi"]
-[ext_resource type="AudioStream" uid="uid://dw27r5sps22u2" path="res://audio/244653__greenvwbeetle__pop-3.wav" id="5_vms48"]
-[ext_resource type="AudioStream" uid="uid://dy4bfgq0afi1d" path="res://audio/244652__greenvwbeetle__pop-4.wav" id="6_ejpj5"]
-[ext_resource type="AudioStream" uid="uid://db2h548tyltr0" path="res://audio/244657__greenvwbeetle__pop-5.wav" id="7_uqcyx"]
-[ext_resource type="AudioStream" uid="uid://5c63hmlf2w3i" path="res://audio/244656__greenvwbeetle__pop-6.wav" id="8_a34cw"]
-[ext_resource type="AudioStream" uid="uid://dun7d2masheod" path="res://audio/328118__greenvwbeetle__pop-7.wav" id="9_u0xyn"]
-[ext_resource type="AudioStream" uid="uid://d33b0u258mvon" path="res://audio/328117__greenvwbeetle__pop-8.wav" id="10_toy0q"]
+[ext_resource type="AudioStream" uid="uid://dqbx64gdeml8b" path="res://audio/244655__greenvwbeetle__pop-1.wav" id="3_driy6"]
+[ext_resource type="AudioStream" uid="uid://b4s7kwiqebjeo" path="res://audio/244654__greenvwbeetle__pop-2.wav" id="4_tvnxi"]
+[ext_resource type="AudioStream" uid="uid://vkg5hctb1cla" path="res://audio/244653__greenvwbeetle__pop-3.wav" id="5_vms48"]
+[ext_resource type="AudioStream" uid="uid://p2yi5tq4m4ba" path="res://audio/244652__greenvwbeetle__pop-4.wav" id="6_ejpj5"]
+[ext_resource type="AudioStream" uid="uid://b86qjqrba5gqp" path="res://audio/244657__greenvwbeetle__pop-5.wav" id="7_uqcyx"]
+[ext_resource type="AudioStream" uid="uid://cwln7ut317y2y" path="res://audio/244656__greenvwbeetle__pop-6.wav" id="8_a34cw"]
+[ext_resource type="AudioStream" uid="uid://dbiqa4o3pcgbe" path="res://audio/328118__greenvwbeetle__pop-7.wav" id="9_u0xyn"]
+[ext_resource type="AudioStream" uid="uid://cgvryo1tjpn5x" path="res://audio/328117__greenvwbeetle__pop-8.wav" id="10_toy0q"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4poj7"]
 load_path = "res://.godot/imported/soap_bubble_color.png-93c986f179eecfeb5918cf44e28bfea5.s3tc.ctex"
@@ -24,6 +24,7 @@ noise = SubResource("FastNoiseLite_fa5hh")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_ajvcc")
+shader_parameter/fresnel_modifier = 0.0
 shader_parameter/bubble_size = 0.1
 shader_parameter/smoothness = 0.05
 shader_parameter/dissolve = 0.0
@@ -173,6 +174,7 @@ stream_6/stream = ExtResource("9_u0xyn")
 stream_7/stream = ExtResource("10_toy0q")
 
 [node name="SoapBubble" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_y707r")
 
 [node name="Bubble" type="MeshInstance3D" parent="."]

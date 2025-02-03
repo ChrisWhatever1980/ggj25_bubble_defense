@@ -6,22 +6,21 @@ extends Node3D
 
 
 var lifetime : float = 5.0
-var speed : float = 5.0
+var speed : float = 0.5
 
 
 func _ready() -> void:
-	lifetime = randf_range(2.0, 7.0)
-	speed = randf_range(2.0, 5.0)
+	lifetime = randf_range(3.0, 3.0)
+	speed = randf_range(0.15, 0.3)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-	#position.y += delta * speed
-#
-	#lifetime -= delta
-	#if lifetime <= 0.0:
-		#pop()
+func _process(delta: float) -> void:
+	position.y += delta * speed
+
+	lifetime -= delta
+	if lifetime <= 0.0:
+		pop()
 
 
 func pop() -> void:
